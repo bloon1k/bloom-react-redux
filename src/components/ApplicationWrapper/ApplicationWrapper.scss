@@ -1,0 +1,26 @@
+@use '../../styles/colors';
+
+.application-wrapper {
+  width: 100%;
+  display: flex;
+  padding-top: 80px;
+}
+
+// Adaptive media queries
+@media screen and (min-width: 1200px) {
+  .application__wrapper {
+    width: 1200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .placeholder {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .application-wrapper {
+    padding-top: 60px;
+  }
+}

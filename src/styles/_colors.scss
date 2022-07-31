@@ -1,0 +1,26 @@
+// colors
+:root {
+  // dark
+  --primary: #141414;
+  --secondary: #404040;
+  --font: #DDDFE2;
+  --blue: #2864F9;
+  --red: #B64141;
+}
+
+$primary: var(--primary);
+$secondary: var(--secondary);
+$font: var(--font);
+$blue: var(--blue);
+$red: var(--red);
+// light
+//$light-primary: #F1F6F9;
+//$light-secondary: #B1B3B9;
+//$light-font: #565C66;
+
+:export {
+  primaryColor: $primary;
+  secondaryColor: $secondary;
+}
+
+

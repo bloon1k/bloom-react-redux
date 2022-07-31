@@ -1,0 +1,7 @@
+@use '../../styles/colors';
+
+.home {
+  width: 100%;
+  border: 1px solid gray;
+  color: colors.$font;
+}

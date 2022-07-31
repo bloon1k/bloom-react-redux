@@ -1,0 +1,51 @@
+@use '../../styles/colors';
+
+.navbar {
+  position: absolute;
+  top: 140%;
+  left: 2%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+
+  &__link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: colors.$font;
+    transition: .3s all;
+    width: 140px;
+    height: 40px;
+    padding: 0 1em;
+    border-radius: .5em;
+
+    &:hover {
+      background: colors.$secondary;
+    }
+  }
+
+  &__svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+// Adaptive media queries
+@media screen and (max-width: 1024px) {
+  .navbar {
+    left: 0.5%;
+    font-size: .9em;
+
+    &__link {
+      width: 120px;
+      height: 35px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+}
+

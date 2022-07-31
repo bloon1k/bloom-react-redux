@@ -1,0 +1,104 @@
+@use '../../styles/colors';
+
+.sign-in {
+  padding: 8%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__text {
+    color: colors.$font;
+    font-size: 2em;
+  }
+
+  &__input {
+    background: rgba(0, 0, 0, 0);
+    color: colors.$font;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 2px solid colors.$secondary;
+    padding-left: .3em;
+    width: 100%;
+    font-size: 1.3em;
+    height: 45px;
+
+    &:active &__placeholder {
+      top: 10%;
+    }
+
+    &-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+    }
+  }
+
+  &__placeholder {
+    opacity: .7;
+    transition: .3s all;
+    position: absolute;
+    top: 20%;
+    left: 2%;
+    font-size: 1.3em;
+    color: colors.$font;
+
+    &-move {
+      top: -30%;
+      font-size: .8em;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: 105%;
+    left: 2%;
+    font-size: .8em;
+    color: colors.$red;
+  }
+
+  &__button {
+    background: rgba(0, 0, 0, 0);
+    color: colors.$font;
+    border: 2px solid colors.$secondary;
+    border-radius: .6em;
+    width: 70%;
+    height: 45px;
+    font-size: 1.1em;
+    transition: .3s all;
+
+    &:hover {
+      background: colors.$secondary;
+      color: white;
+    }
+  }
+
+  &__fail {
+    color: colors.$red;
+  }
+}
+
+// Adaptive media queries
+@media screen and (max-width: 768px) {
+  .sign-in {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sign-in {
+    width: 100%;
+  }
+}
+

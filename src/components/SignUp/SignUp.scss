@@ -1,0 +1,31 @@
+@use '../../styles/colors';
+
+.sign-up {
+  padding: 5%;
+  background: colors.$font;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+
+  &__text {
+    font-size: 1.3em;
+    color: colors.$secondary;
+    text-align: center;
+  }
+
+  &__link {
+    font-size: 1.1em;
+    color: colors.$red;
+    text-decoration: none;
+
+    & > span {
+      color: colors.$secondary;
+    }
+  }
+
+  &__image {
+    width: 25%;
+  }
+}

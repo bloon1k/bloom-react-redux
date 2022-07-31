@@ -1,0 +1,16 @@
+@use '../../styles/colors';
+
+.no-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__text {
+    color: colors.$font;
+    font-size: 2em;
+  }
+
+  &__image {
+    width: 400px;
+  }
+}

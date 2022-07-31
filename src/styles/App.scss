@@ -1,0 +1,35 @@
+// Reset styles
+@use './colors';
+@import '../../node_modules/scss-reset/src/scss/_reset';
+
+* {
+  box-sizing: border-box;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+body {
+  background: linear-gradient(to bottom, colors.$primary, colors.$secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#root {
+  width: 100%;
+}
+
+.App {
+  display: flex;
+  box-shadow: 0 0 10px -5px #666;
+  min-height: 100vh;
+  width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .App {
+    width: 1200px;
+  }
+  #root {
+    width: 1200px;
+  }
+}
