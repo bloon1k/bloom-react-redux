@@ -4,7 +4,7 @@ import {createRoot} from 'react-dom/client'
 import {Provider} from 'react-redux'
 import {store} from './redux/app/store'
 // Router
-import {BrowserRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 // Children
 import App from './App'
 
@@ -13,10 +13,10 @@ const root = createRoot(container)
 
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <App/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 )
