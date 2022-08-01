@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bloom-react-redux/static/css/main.24a0d155.css",
-    "main.js": "/bloom-react-redux/static/js/main.2f92a010.js",
+    "main.js": "/bloom-react-redux/static/js/main.b56b65b1.js",
     "static/media/logo-dark.png": "/bloom-react-redux/static/media/logo-dark.98e02ae6d0b48c6b131a.png",
     "static/media/logo-light.png": "/bloom-react-redux/static/media/logo-light.d4bbc4bdad26d5b2ebd2.png",
     "static/media/welcome.svg": "/bloom-react-redux/static/media/welcome.b6a961e7c2cb26b22d867535c4d20419.svg",
@@ -18,10 +18,10 @@
     "static/media/myProfile-dark.svg": "/bloom-react-redux/static/media/myProfile-dark.56d1fe2b627b7a37d0341d45ddfa34e4.svg",
     "static/media/myProfile.svg": "/bloom-react-redux/static/media/myProfile.2bf312d6b46a7ab31348c7c7689a00fc.svg",
     "main.24a0d155.css.map": "/bloom-react-redux/static/css/main.24a0d155.css.map",
-    "main.2f92a010.js.map": "/bloom-react-redux/static/js/main.2f92a010.js.map"
+    "main.b56b65b1.js.map": "/bloom-react-redux/static/js/main.b56b65b1.js.map"
   },
   "entrypoints": [
     "static/css/main.24a0d155.css",
-    "static/js/main.2f92a010.js"
+    "static/js/main.b56b65b1.js"
   ]
 }
