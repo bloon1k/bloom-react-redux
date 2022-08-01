@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1f94413-57c8-4c9b-b7ad-72671f09b813" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Assets/google.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/changeTheme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/changeTheme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationWrapper/ApplicationWrapper.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationWrapper/ApplicationWrapper.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MyProfile/MyProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyProfile/MyProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUp/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUp/SignUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUp/SignUp.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUp/SignUp.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/features/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/authSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/features/userDataSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/userDataSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659305174542</updated>
-      <workItem from="1659305177164" duration="5672000" />
+      <workItem from="1659305177164" duration="13819000" />
     </task>
     <servers />
   </component>

@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2em;
     width: 100%;
   }
 
@@ -68,7 +69,7 @@
     color: colors.$red;
   }
 
-  &__button {
+  &__button, &__button--google {
     background: rgba(0, 0, 0, 0);
     color: colors.$font;
     border: 2px solid colors.$secondary;
@@ -77,6 +78,14 @@
     height: 45px;
     font-size: 1.1em;
     transition: .3s all;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+
+    &--google {
+      justify-content: center;
+    }
 
     &:hover {
       background: colors.$secondary;
@@ -86,7 +95,19 @@
 
   &__fail {
     color: colors.$red;
+    text-align: center;
   }
+
+  &__or {
+    color: colors.$font;
+    margin: -1em 0;
+  }
+
+  &__image {
+    width: 25px;
+    height: 25px;
+  }
+
 }
 
 // Adaptive media queries
@@ -99,6 +120,19 @@
 @media screen and (max-width: 480px) {
   .sign-in {
     width: 100%;
+
+    &__input {
+      font-size: 1em;
+    }
+
+    &__button, &__button--google {
+      font-size: 1em;
+    }
+
+    &__image {
+      width: 22px;
+      height: 22px;
+    }
   }
 }
 

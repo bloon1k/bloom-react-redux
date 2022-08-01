@@ -3,6 +3,7 @@ import React from 'react'
 import './SignUp.scss'
 // Libraries
 import {Link} from 'react-router-dom'
+// Assets
 import welcome from '../../Assets/welcome.svg'
 
 const SignUp = () => {
