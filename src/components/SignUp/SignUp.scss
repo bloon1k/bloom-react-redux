@@ -29,3 +29,14 @@
     width: 25%;
   }
 }
+
+// Adaptive media queries
+@media screen and (max-width: 480px) {
+  .sign-up {
+    flex-direction: column;
+
+    &__image {
+      width: 50%;
+    }
+  }
+}

@@ -9,11 +9,21 @@ import * as yup from 'yup'
 import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../../redux/features/authSlice'
 // Firebase
-import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
-import SignUp from '../SignUp/SignUp'
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult
+} from 'firebase/auth'
 // Redux
-import {changedEmail, changedPassword} from '../../redux/features/userDataSlice'
+import {changedEmail, changedName, changedPassword, changedPhoto} from '../../redux/features/userDataSlice'
 import {occurredError} from '../../redux/features/signInErrorSlice'
+// Assets
+import google from '../../Assets/google.svg'
+// Children
+import SignUp from '../SignUp/SignUp'
 
 const schema = yup.object().shape({
     email: yup.string().email('Please enter a valid email').required('Email is required'),
@@ -23,13 +33,20 @@ const schema = yup.object().shape({
 
 const SignIn = () => {
 
+    const provider = new GoogleAuthProvider()
+
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         resolver: yupResolver(schema)
     })
 
-    const error = useSelector(state => {
-        return state.signInError.message
-    })
+    const dispatch = useDispatch()
+
+    const signInError = useSelector(state => state.signInError.message)
+
+    const app = useSelector(state => state.fireAuth.app)
+    const auth = getAuth(app)
+
+    const isLoggedIn = useSelector(state => state.auth.isAuth)
 
     function submitLoginForm(data) {
         signInWithEmailAndPassword(auth, data.email, data.password)
@@ -39,8 +56,8 @@ const SignIn = () => {
                 dispatch(changedPassword(data.password))
                 dispatch(login())
                 // TODO send this to redux store when you gonna need to display user data in profile page
-                // const user = userCredential.user
-                // console.log(user)
+                const user = userCredential.user
+                console.log(user)
             })
             .catch((error) => {
                 dispatch(occurredError(error.code === 'auth/user-not-found' ? 'user not found' : 'incorrect password'))
@@ -48,14 +65,42 @@ const SignIn = () => {
         reset()
     }
 
-    const dispatch = useDispatch()
-    const app = useSelector(state => {
-        return state.fireAuth.app
-    })
-    const auth = getAuth(app)
+    function googleSignIn(e) {
+        e.preventDefault()
+        if (window.innerWidth <= 768) {
+            signInWithRedirect(auth, provider).then(() => 1)
+        } else {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    // The signed-in user info.
+                    const user = result.user
+                    dispatch(changedEmail(user.email))
+                    dispatch(changedPhoto(user.photoURL))
+                    dispatch(changedName(user.displayName))
+                    dispatch(login())
+                    console.log('User info: ', user)
+                }).catch(error => {
+                // Handle Errors here.
+                const errorCode = error.code
+                console.log(errorCode)
+            })
+        }
+    }
 
-    const isLoggedIn = useSelector(state => {
-        return state.auth.isAuth
+    // Sign in result handler for tablets and mobiles
+    getRedirectResult(auth)
+        .then((result) => {
+            // The signed-in user info.
+            const user = result.user
+            dispatch(changedEmail(user.email))
+            dispatch(changedPhoto(user.photoURL))
+            dispatch(changedName(user.displayName))
+            dispatch(login())
+            console.log('User info: ', user)
+        }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code
+        console.log(errorCode)
     })
 
     if (isLoggedIn) return <Navigate to={'/'}/>
@@ -101,7 +146,11 @@ const SignIn = () => {
                     </span>
                 </div>
                 <button className={'sign-in__button'} type={'submit'}>Sign In</button>
-                {error && <span className="sign-in__fail">Sign in failed, {error}</span>}
+                {signInError && <span className="sign-in__fail">Sign in failed, {signInError}</span>}
+                <span className={'sign-in__or'}>or</span>
+                <button onClick={googleSignIn} className={'sign-in__button--google'}>
+                    <img src={google} alt="google logo" className={'sign-in__image'}/> Sign in with Google
+                </button>
             </form>
             <SignUp/>
         </div>
