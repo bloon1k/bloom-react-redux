@@ -1,11 +1,12 @@
 {
   "files": {
-    "main.css": "/bloom-react-redux/static/css/main.16c74144.css",
-    "main.js": "/bloom-react-redux/static/js/main.0bd67978.js",
+    "main.css": "/bloom-react-redux/static/css/main.7c5f6cfe.css",
+    "main.js": "/bloom-react-redux/static/js/main.20629960.js",
     "static/media/logo-dark.png": "/bloom-react-redux/static/media/logo-dark.98e02ae6d0b48c6b131a.png",
     "static/media/logo-light.png": "/bloom-react-redux/static/media/logo-light.d4bbc4bdad26d5b2ebd2.png",
     "static/media/welcome.svg": "/bloom-react-redux/static/media/welcome.b6a961e7c2cb26b22d867535c4d20419.svg",
     "static/media/noPage.svg": "/bloom-react-redux/static/media/noPage.45ea294efaf2aabc0f5584ffdde8695b.svg",
+    "static/media/horizontal.svg": "/bloom-react-redux/static/media/horizontal.cababb1d9ccfee52d8cb8771aa12ff48.svg",
     "static/media/news-dark.svg": "/bloom-react-redux/static/media/news-dark.ba4e0bac21996a1efefdc5db578d5a7e.svg",
     "static/media/news.svg": "/bloom-react-redux/static/media/news.f8828153ccb9a5ff2787efe8b7c5355a.svg",
     "static/media/friends-dark.svg": "/bloom-react-redux/static/media/friends-dark.c5cf999662bf7cb8992f9bca802094ff.svg",
@@ -18,11 +19,11 @@
     "static/media/google.svg": "/bloom-react-redux/static/media/google.330a2dc7f18d7502647dc5d6f93812ec.svg",
     "static/media/myProfile-dark.svg": "/bloom-react-redux/static/media/myProfile-dark.56d1fe2b627b7a37d0341d45ddfa34e4.svg",
     "static/media/myProfile.svg": "/bloom-react-redux/static/media/myProfile.2bf312d6b46a7ab31348c7c7689a00fc.svg",
-    "main.16c74144.css.map": "/bloom-react-redux/static/css/main.16c74144.css.map",
-    "main.0bd67978.js.map": "/bloom-react-redux/static/js/main.0bd67978.js.map"
+    "main.7c5f6cfe.css.map": "/bloom-react-redux/static/css/main.7c5f6cfe.css.map",
+    "main.20629960.js.map": "/bloom-react-redux/static/js/main.20629960.js.map"
   },
   "entrypoints": [
-    "static/css/main.16c74144.css",
-    "static/js/main.0bd67978.js"
+    "static/css/main.7c5f6cfe.css",
+    "static/js/main.20629960.js"
   ]
 }
