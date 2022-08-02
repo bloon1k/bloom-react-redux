@@ -1,9 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
+    id: '',
     email: '',
     password: '',
     name: '',
+    surname: '',
     photoURL: '',
 }
 
@@ -11,20 +13,33 @@ const userDataSlice = createSlice({
     name: 'userData',
     initialState,
     reducers: {
-        changedEmail: (state, action) => {
+        setID: (state, action) => {
+            state.id = action.payload
+        },
+        setEmail: (state, action) => {
             state.email = action.payload
         },
-        changedPassword: (state, action) => {
+        setPassword: (state, action) => {
             state.password = action.payload
         },
-        changedPhoto: (state, action) => {
+        setName: (state, action) => {
+            state.name = action.payload
+        },
+        setSurname: (state, action) => {
+            state.surname = action.payload
+        },
+        setPhoto: (state, action) => {
             state.photoURL = action.payload
         },
-        changedName: (state, action) => {
-            state.name = action.payload
+        clearUserData: (state) => {
+            state.id = ''
+            state.email = ''
+            state.password = ''
+            state.name = ''
+            state.photoURL = ''
         }
     }
 })
 
-export const {changedEmail, changedPassword, changedPhoto, changedName} = userDataSlice.actions
+export const {setID, setEmail, setPassword, setPhoto, setName, setSurname, clearUserData} = userDataSlice.actions
 export default userDataSlice.reducer

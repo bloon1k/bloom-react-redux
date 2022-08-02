@@ -3,7 +3,7 @@ import themeReducer from '../features/themeSlice'
 import authReducer from '../features/authSlice'
 import fireAuthReducer from '../features/fireAuthSlice'
 import userDataReducer from '../features/userDataSlice'
-import signInErrorReducer from '../features/signInErrorSlice'
+import errorsReducer from '../features/errorsSlice'
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +11,6 @@ export const store = configureStore({
         auth: authReducer,
         fireAuth: fireAuthReducer,
         userData: userDataReducer,
-        signInError: signInErrorReducer,
+        errors: errorsReducer,
     },
 })
