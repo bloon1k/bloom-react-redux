@@ -6,8 +6,6 @@ import {Navigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import {useDispatch, useSelector} from 'react-redux'
-import {login} from '../../redux/features/authSlice'
 // Firebase
 import {
     getAuth,
@@ -18,8 +16,10 @@ import {
     getRedirectResult
 } from 'firebase/auth'
 // Redux
-import {changedEmail, changedName, changedPassword, changedPhoto} from '../../redux/features/userDataSlice'
-import {occurredError} from '../../redux/features/signInErrorSlice'
+import {useDispatch, useSelector} from 'react-redux'
+import {login} from '../../redux/features/authSlice'
+import {setID, setEmail, setName, setSurname, setPassword, setPhoto} from '../../redux/features/userDataSlice'
+import {occurredSignInError} from '../../redux/features/errorsSlice'
 // Assets
 import google from '../../Assets/google.svg'
 // Children
@@ -41,28 +41,27 @@ const SignIn = () => {
 
     const dispatch = useDispatch()
 
-    const signInError = useSelector(state => state.signInError.message)
+    const signInError = useSelector(state => state.errors.signInError)
 
     const app = useSelector(state => state.fireAuth.app)
     const auth = getAuth(app)
-
-    const isLoggedIn = useSelector(state => state.auth.isAuth)
 
     function submitLoginForm(data) {
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then(userCredential => {
                 // Signed in
-                dispatch(changedEmail(data.email))
-                dispatch(changedPassword(data.password))
-                dispatch(login())
-                // TODO send this to redux store when you gonna need to display user data in profile page
                 const user = userCredential.user
-                console.log(user)
+                console.log('User info: ', user)
+                dispatch(setID(user.uid))
+                dispatch(setEmail(data.email))
+                dispatch(setPassword(data.password))
+                dispatch(login())
+                reset()
             })
             .catch((error) => {
-                dispatch(occurredError(error.code === 'auth/user-not-found' ? 'user not found' : 'incorrect password'))
+                dispatch(occurredSignInError(error.code === 'auth/user-not-found' ? 'user not found' : 'incorrect password'))
+                reset()
             })
-        reset()
     }
 
     function googleSignIn(e) {
@@ -74,15 +73,18 @@ const SignIn = () => {
                 .then((result) => {
                     // The signed-in user info.
                     const user = result.user
-                    dispatch(changedEmail(user.email))
-                    dispatch(changedPhoto(user.photoURL))
-                    dispatch(changedName(user.displayName))
+                    const name = user.displayName.split(' ')[0]
+                    const surname = user.displayName.split(' ')[1]
+                    dispatch(setID(user.uid))
+                    dispatch(setEmail(user.email))
+                    dispatch(setName(name))
+                    dispatch(setSurname(surname))
+                    dispatch(setPhoto(user.photoURL))
                     dispatch(login())
-                    console.log('User info: ', user)
                 }).catch(error => {
                 // Handle Errors here.
                 const errorCode = error.code
-                console.log(errorCode)
+                dispatch(occurredSignInError(errorCode))
             })
         }
     }
@@ -92,17 +94,23 @@ const SignIn = () => {
         .then((result) => {
             // The signed-in user info.
             const user = result.user
-            dispatch(changedEmail(user.email))
-            dispatch(changedPhoto(user.photoURL))
-            dispatch(changedName(user.displayName))
+            const name = user.displayName.split(' ')[0]
+            const surname = user.displayName.split(' ')[1]
+            dispatch(setID(user.uid))
+            dispatch(setEmail(user.email))
+            dispatch(setName(name))
+            dispatch(setSurname(surname))
+            dispatch(setPhoto(user.photoURL))
             dispatch(login())
-            console.log('User info: ', user)
         }).catch((error) => {
         // Handle Errors here.
         const errorCode = error.code
-        console.log(errorCode)
+        if (errorCode) {
+            dispatch(occurredSignInError(errorCode))
+        }
     })
 
+    const isLoggedIn = useSelector(state => state.auth.isAuth)
     if (isLoggedIn) return <Navigate to={'/'}/>
 
     return (

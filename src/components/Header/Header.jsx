@@ -3,8 +3,10 @@ import React from 'react'
 import './Header.scss'
 // Utils
 import changeTheme from '../../utils/changeTheme'
+// Redux
 import {changed} from '../../redux/features/themeSlice'
 import {logout} from '../../redux/features/authSlice'
+import {clearUserData} from '../../redux/features/userDataSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 // Assets
@@ -36,6 +38,7 @@ const Header = () => {
     }
 
     function logoutHandler() {
+        dispatch(clearUserData())
         dispatch(logout())
     }
 

@@ -17,11 +17,12 @@
 
   &__link {
     font-size: 1.1em;
-    color: colors.$red;
+    color: colors.$secondary;
     text-decoration: none;
 
     & > span {
-      color: colors.$secondary;
+      text-decoration: underline;
+      color: colors.$red;
     }
   }
 

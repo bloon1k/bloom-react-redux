@@ -12,6 +12,7 @@ const MyProfile = () => {
             My profile
             <img src={user.photoURL} alt={'profile pic'}/>
             <p>{user.name}</p>
+            <p>{user.surname}</p>
         </section>
     )
 }
