@@ -6,6 +6,7 @@ import {Navigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import getUserDataByEmail from '../../utils/getUserDataByEmail'
 // Firebase
 import {
     getAuth,
@@ -32,30 +33,33 @@ const schema = yup.object().shape({
 })
 
 const SignIn = () => {
-
     const provider = new GoogleAuthProvider()
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         resolver: yupResolver(schema)
     })
 
-    const dispatch = useDispatch()
-
-    const signInError = useSelector(state => state.errors.signInError)
-
-    const app = useSelector(state => state.fireAuth.app)
+    const app = useSelector(state => state.firebase.app)
     const auth = getAuth(app)
+    const dispatch = useDispatch()
+    const database = useSelector(state => state.firebase.database)
+    const signInError = useSelector(state => state.errors.signInError)
 
     function submitLoginForm(data) {
         signInWithEmailAndPassword(auth, data.email, data.password)
-            .then(userCredential => {
+            .then(() => {
                 // Signed in
-                const user = userCredential.user
-                console.log('User info: ', user)
-                dispatch(setID(user.uid))
                 dispatch(setEmail(data.email))
                 dispatch(setPassword(data.password))
-                dispatch(login())
+                // userID, Name, Surname, photoURL are fetched from server using getUserDataByEmail
+                getUserDataByEmail(database, data.email)
+                    .then(userData => {
+                        dispatch(setID(userData.userID))
+                        dispatch(setName(userData.name))
+                        dispatch(setSurname(userData.surname))
+                        dispatch(setPhoto(userData.photoURL))
+                        dispatch(login())
+                    })
                 reset()
             })
             .catch((error) => {

@@ -1,0 +1,15 @@
+@use '../../styles/colors';
+
+.profile {
+  width: 100%;
+  border: 1px solid gray;
+  color: colors.$font;
+
+  &__image {
+    border: 2px solid colors.$secondary;
+    border-radius: 50%;
+    background: colors.$font;
+    width: 100px;
+    height: 100px;
+  }
+}

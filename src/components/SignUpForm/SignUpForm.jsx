@@ -6,6 +6,7 @@ import {Link, Navigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import {v4 as uuid} from 'uuid'
 // Assets
 import horizontal from '../../Assets/horizontal.svg'
 // Redux
@@ -15,6 +16,8 @@ import {setID, setEmail, setName, setSurname, setPassword} from '../../redux/fea
 import {occurredSignUpError} from '../../redux/features/errorsSlice'
 // Firebase
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
+// Firestore
+import {doc, setDoc} from 'firebase/firestore'
 
 const schema = yup.object().shape({
     name: yup.string().min(4, 'At least 4 characters').max(35, 'No longer than 35 characters').required('Name is' +
@@ -35,25 +38,38 @@ const SignUpForm = () => {
 
     const dispatch = useDispatch()
 
-    const app = useSelector(state => state.fireAuth.app)
+    const database = useSelector(state => state.firebase.database)
+    const app = useSelector(state => state.firebase.app)
     const auth = getAuth(app)
 
     const signUpError = useSelector(state => state.errors.signUpError)
 
     function submitSignUpForm(data) {
         createUserWithEmailAndPassword(auth, data.email, data.password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user
-                dispatch(setID(user.uid))
+            .then(async (userCredential) => {
+                // Sign up success
+                let userID = uuid()
+                // Remember to redux store
+                dispatch(setID(userID))
                 dispatch(setEmail(data.email))
                 dispatch(setPassword(data.password))
                 dispatch(setName(data.name))
                 dispatch(setSurname(data.surname))
+                // Send data to DB (update usersData collection)
+                await setDoc(doc(database, 'usersData', userID), {
+                    userID: userID,
+                    email: data.email,
+                    password: data.password,
+                    name: data.name,
+                    surname: data.surname,
+                    photoURL: ''
+                })
+                // Auto-login after
                 dispatch(login())
             })
             .catch((error) => {
                 const errorCode = error.code
+                // Dispatched error will be displayed under the form
                 dispatch(occurredSignUpError(errorCode))
             })
         reset()
