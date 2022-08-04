@@ -2,6 +2,8 @@ import {createSlice} from '@reduxjs/toolkit'
 
 // TODO perhaps move init firebase app somewhere to separate file
 import {initializeApp} from 'firebase/app'
+// Firestore
+import {getFirestore} from 'firebase/firestore'
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCCBLfzpS8WZ0ZoNIrm_w-_CsRfA_cK8_Y',
@@ -13,17 +15,19 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
+const database = getFirestore(app)
 
 const initialState = {
-    app: app
+    app: app,
+    database: database,
 }
 
-const fireAuthSlice = createSlice({
-    name: 'fireAuth',
+const firebaseSlice = createSlice({
+    name: 'firebase',
     initialState,
     reducers: {
         //
     }
 })
 
-export default fireAuthSlice.reducer
+export default firebaseSlice.reducer

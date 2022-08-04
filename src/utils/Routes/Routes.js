@@ -3,7 +3,7 @@ import React from 'react'
 import {Routes as MyRoutes, Route, Navigate} from 'react-router-dom'
 // Children
 import Header from '../../components/Header/Header'
-import MyProfile from '../../components/MyProfile/MyProfile'
+import Profile from '../../components/MyProfile/Profile'
 import NoPage from '../../components/NoPage/NoPage'
 import SignIn from '../../components/SignIn/SignIn'
 import SignUpForm from '../../components/SignUpForm/SignUpForm'
@@ -21,7 +21,7 @@ const Routes = () => {
 
             <Route path={'/'} element={
                 <RequireAuth>
-                    <MyProfile/>
+                    <Profile/>
                 </RequireAuth>
             }/>
             <Route path={'head'} element={
