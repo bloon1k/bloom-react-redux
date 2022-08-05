@@ -19,7 +19,7 @@ import {
 // Redux
 import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../../redux/features/authSlice'
-import {setID, setEmail, setName, setSurname, setPassword, setPhoto} from '../../redux/features/userDataSlice'
+import {setEmail, setUserName, setPassword, setPhoto} from '../../redux/features/userDataSlice'
 import {occurredSignInError} from '../../redux/features/errorsSlice'
 // Assets
 import google from '../../Assets/google.svg'
@@ -51,12 +51,10 @@ const SignIn = () => {
                 // Signed in
                 dispatch(setEmail(data.email))
                 dispatch(setPassword(data.password))
-                // userID, Name, Surname, photoURL are fetched from server using getUserDataByEmail
+                // userName, photoURL are fetched from server using getUserDataByEmail
                 getUserDataByEmail(database, data.email)
                     .then(userData => {
-                        dispatch(setID(userData.userID))
-                        dispatch(setName(userData.name))
-                        dispatch(setSurname(userData.surname))
+                        dispatch(setUserName(userData.userName))
                         dispatch(setPhoto(userData.photoURL))
                         dispatch(login())
                     })
@@ -77,15 +75,11 @@ const SignIn = () => {
                 .then((result) => {
                     // The signed-in user info.
                     const user = result.user
-                    const name = user.displayName.split(' ')[0]
-                    const surname = user.displayName.split(' ')[1]
-                    dispatch(setID(user.uid))
                     dispatch(setEmail(user.email))
-                    dispatch(setName(name))
-                    dispatch(setSurname(surname))
-                    // photoURL is fetched from server using getUserDataByEmail
+                    // photoURL, userName are fetched from server using getUserDataByEmail
                     getUserDataByEmail(database, user.email)
                         .then(userData => {
+                            dispatch(setUserName(userData.userName))
                             if (userData.photoURL) {
                                 // If user has the uploaded avatar - we get it and remember + display locally
                                 dispatch(setPhoto(userData.photoURL))
@@ -107,15 +101,11 @@ const SignIn = () => {
         .then((result) => {
             // The signed-in user info.
             const user = result.user
-            const name = user.displayName.split(' ')[0]
-            const surname = user.displayName.split(' ')[1]
-            dispatch(setID(user.uid))
             dispatch(setEmail(user.email))
-            dispatch(setName(name))
-            dispatch(setSurname(surname))
-            // photoURL is fetched from server using getUserDataByEmail
+            // photoURL, userName are fetched from server using getUserDataByEmail
             getUserDataByEmail(database, user.email)
                 .then(userData => {
+                    dispatch(setUserName(userData.userName))
                     if (userData.photoURL) {
                         // If user has the uploaded avatar - we get it and remember + display locally
                         dispatch(setPhoto(userData.photoURL))
