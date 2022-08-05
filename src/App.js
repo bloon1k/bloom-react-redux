@@ -6,7 +6,6 @@ import Header from './components/Header/Header'
 import ApplicationWrapper from './components/ApplicationWrapper/ApplicationWrapper'
 import Footer from './components/Footer/Footer'
 
-// if no profile pic after sign in - replace it with placeholder image
 // make sign up form inputs less width, they need to look cool
 // login() should dispatch sign in/up errors, so they are not shown after logout
 // remember login to local storage
