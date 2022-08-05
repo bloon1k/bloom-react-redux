@@ -83,10 +83,19 @@ const SignIn = () => {
                     dispatch(setEmail(user.email))
                     dispatch(setName(name))
                     dispatch(setSurname(surname))
-                    dispatch(setPhoto(user.photoURL))
+                    // photoURL is fetched from server using getUserDataByEmail
+                    getUserDataByEmail(database, user.email)
+                        .then(userData => {
+                            if (userData.photoURL) {
+                                // If user has the uploaded avatar - we get it and remember + display locally
+                                dispatch(setPhoto(userData.photoURL))
+                            } else {
+                                // If user has no saved avatars - we use his Google avatar
+                                dispatch(setPhoto(user.photoURL))
+                            }
+                        })
                     dispatch(login())
                 }).catch(error => {
-                // Handle Errors here.
                 const errorCode = error.code
                 dispatch(occurredSignInError(errorCode))
             })
@@ -104,10 +113,19 @@ const SignIn = () => {
             dispatch(setEmail(user.email))
             dispatch(setName(name))
             dispatch(setSurname(surname))
-            dispatch(setPhoto(user.photoURL))
+            // photoURL is fetched from server using getUserDataByEmail
+            getUserDataByEmail(database, user.email)
+                .then(userData => {
+                    if (userData.photoURL) {
+                        // If user has the uploaded avatar - we get it and remember + display locally
+                        dispatch(setPhoto(userData.photoURL))
+                    } else {
+                        // If user has no saved avatars - we use his Google avatar
+                        dispatch(setPhoto(user.photoURL))
+                    }
+                })
             dispatch(login())
         }).catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code
         if (errorCode) {
             dispatch(occurredSignInError(errorCode))
