@@ -10,6 +10,7 @@ const firebaseConfig = {
     authDomain: 'bloom-5c636.firebaseapp.com',
     // The value of `databaseURL` depends on the location of the database
     databaseURL: 'https://bloom-5c636.firebaseio.com',
+    storageBucket: 'gs://bloom-5c636.appspot.com',
     projectId: 'bloom-5c636',
     appId: '232930907105',
 }

@@ -114,6 +114,16 @@
 @media screen and (max-width: 768px) {
   .sign-in {
     width: 90%;
+    padding: 5%;
+
+    &__wrapper {
+      gap: 1.2em;
+    }
+
+    &__fail {
+      font-size: .8em;
+      margin-top: -1em;
+    }
   }
 }
 

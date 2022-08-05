@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1f94413-57c8-4c9b-b7ad-72671f09b813" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Assets/guest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/getUserDataByEmail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MyProfile/MyProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyProfile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MyProfile/MyProfile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyProfile/Profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MyProfile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyProfile/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MyProfile/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyProfile/Profile.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/app/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/features/fireAuthSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/firebaseSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Routes/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Routes/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUp/SignUp.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUp/SignUp.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/features/firebaseSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/firebaseSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1659305174542</updated>
       <workItem from="1659305177164" duration="33136000" />
-      <workItem from="1659610284403" duration="5759000" />
+      <workItem from="1659610284403" duration="13035000" />
     </task>
     <servers />
   </component>
