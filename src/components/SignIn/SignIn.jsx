@@ -7,6 +7,7 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import getUserDataByEmail from '../../utils/getUserDataByEmail'
+import getFollowersDataByID from '../../utils/getFollowersDataByID'
 import {v4 as uuid} from 'uuid'
 // Firebase
 import {
@@ -20,7 +21,14 @@ import {
 // Redux
 import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../../redux/features/authSlice'
-import {setUserID, setUserName, setEmail, setPassword, setPhoto} from '../../redux/features/userDataSlice'
+import {
+    setUserID,
+    setUserName,
+    setEmail,
+    setPassword,
+    setPhoto,
+} from '../../redux/features/userDataSlice'
+import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
 import {setCurrentUserNameValue, startUserNameChange} from '../../redux/features/changeHandlerSlice'
 import {occurredSignInError} from '../../redux/features/errorsSlice'
 // Assets
@@ -53,23 +61,28 @@ const SignIn = () => {
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then(() => {
                 // Signed in
-                dispatch(setEmail(data.email))
-                dispatch(setPassword(data.password))
                 // userID, userName, photoURL are fetched from server using getUserDataByEmail
                 getUserDataByEmail(database, data.email)
                     .then(userData => {
-                        dispatch(setUserID(userData.userID))
-                        dispatch(setUserName(userData.userName))
-                        // currentUserName is required to change userName in Profile page
-                        dispatch(setCurrentUserNameValue(userData.userName))
-                        dispatch(setPhoto(userData.photoURL))
-                        dispatch(login())
+                        getFollowersDataByID(database, userData.userID)
+                            .then(followersData => {
+                                dispatch(setFollowers(followersData.followers))
+                                dispatch(setFollowing(followersData.following))
+
+                                dispatch(setUserID(userData.userID))
+                                dispatch(setUserName(userData.userName))
+                                // currentUserName is required to change userName in Profile page
+                                dispatch(setCurrentUserNameValue(userData.userName))
+                                dispatch(setEmail(data.email))
+                                dispatch(setPassword(data.password))
+                                dispatch(setPhoto(userData.photoURL))
+                                dispatch(login())
+                                reset()
+                            })
                     })
-                reset()
             })
             .catch((error) => {
                 dispatch(occurredSignInError(error.code === 'auth/user-not-found' ? 'user not found' : 'incorrect password'))
-                reset()
             })
     }
 
@@ -82,13 +95,67 @@ const SignIn = () => {
                 .then((result) => {
                     // The signed-in user info.
                     const user = result.user
-                    dispatch(setEmail(user.email))
                     // userID, photoURL, userName are fetched from server using getUserDataByEmail
                     getUserDataByEmail(database, user.email)
                         .then(async userData => {
                             const newUserID = uuid()
+                            dispatch(setEmail(user.email))
                             if (userData) {
                                 // If user exists already
+                                // Get followers data from DB
+                                getFollowersDataByID(database, userData.userID)
+                                    .then(followersData => {
+                                        dispatch(setFollowers(followersData.followers))
+                                        dispatch(setFollowing(followersData.following))
+
+                                        dispatch(setUserID(userData.userID))
+                                        dispatch(setUserName(userData.userName))
+                                        // currentUserName is required to change userName in Profile page
+                                        dispatch(setCurrentUserNameValue(userData.userName))
+                                        if (userData.photoURL) {
+                                            // If user has the uploaded avatar - we get it and remember + display
+                                            // locally
+                                            dispatch(setPhoto(userData.photoURL))
+                                        } else {
+                                            // If user has no saved avatars - we use his Google avatar
+                                            dispatch(setPhoto(user.photoURL))
+                                        }
+                                        dispatch(login())
+                                    })
+                            } else {
+                                // If user never existed
+                                dispatch(setUserID(newUserID))
+                                dispatch(startUserNameChange())
+                                // All data will be sent to firestore once user creates userName
+                                navigate('/create-username')
+                            }
+                        })
+                })
+                .catch(error => {
+                    const errorCode = error.code
+                    dispatch(occurredSignInError(errorCode))
+                })
+        }
+    }
+
+    // Sign in result handler for tablets and mobiles
+    getRedirectResult(auth)
+        .then((result) => {
+            // The signed-in user info.
+            const user = result.user
+            // userID, photoURL, userName are fetched from server using getUserDataByEmail
+            getUserDataByEmail(database, user.email)
+                .then(async userData => {
+                    const newUserID = uuid()
+                    dispatch(setEmail(user.email))
+                    if (userData) {
+                        // If user exists already
+                        // Get followers data from DB
+                        getFollowersDataByID(database, userData.userID)
+                            .then(followersData => {
+                                dispatch(setFollowers(followersData.followers))
+                                dispatch(setFollowing(followersData.following))
+
                                 dispatch(setUserID(userData.userID))
                                 dispatch(setUserName(userData.userName))
                                 // currentUserName is required to change userName in Profile page
@@ -101,45 +168,7 @@ const SignIn = () => {
                                     dispatch(setPhoto(user.photoURL))
                                 }
                                 dispatch(login())
-                            } else {
-                                // If user never existed
-                                dispatch(setUserID(newUserID))
-                                dispatch(startUserNameChange())
-                                // All data will be sent to firestore once user creates userName
-                                navigate('/create-username')
-                            }
-                        })
-                }).catch(error => {
-                const errorCode = error.code
-                dispatch(occurredSignInError(errorCode))
-            })
-        }
-    }
-
-    // Sign in result handler for tablets and mobiles
-    getRedirectResult(auth)
-        .then((result) => {
-            // The signed-in user info.
-            const user = result.user
-            dispatch(setEmail(user.email))
-            // userID, photoURL, userName are fetched from server using getUserDataByEmail
-            getUserDataByEmail(database, user.email)
-                .then(async userData => {
-                    const newUserID = uuid()
-                    if (userData) {
-                        // If user exists already
-                        dispatch(setUserID(userData.userID))
-                        dispatch(setUserName(userData.userName))
-                        // currentUserName is required to change userName in Profile page
-                        dispatch(setCurrentUserNameValue(userData.userName))
-                        if (userData.photoURL) {
-                            // If user has the uploaded avatar - we get it and remember + display locally
-                            dispatch(setPhoto(userData.photoURL))
-                        } else {
-                            // If user has no saved avatars - we use his Google avatar
-                            dispatch(setPhoto(user.photoURL))
-                        }
-                        dispatch(login())
+                            })
                     } else {
                         // If user never existed
                         dispatch(setUserID(newUserID))
@@ -148,12 +177,11 @@ const SignIn = () => {
                         navigate('/create-username')
                     }
                 })
-        }).catch((error) => {
-        const errorCode = error.code
-        if (errorCode) {
+        })
+        .catch((error) => {
+            const errorCode = error.code
             dispatch(occurredSignInError(errorCode))
-        }
-    })
+        })
 
     const isLoggedIn = useSelector(state => state.auth.isAuth)
     const googleUserHalfLogged = useSelector(state => state.userData.userID)

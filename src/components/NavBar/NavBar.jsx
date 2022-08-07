@@ -4,12 +4,12 @@ import './NavBar.scss'
 // Assets
 import myProfile from '../../Assets/myProfile.svg'
 import myProfileDark from '../../Assets/myProfile-dark.svg'
-import news from '../../Assets/news.svg'
-import newsDark from '../../Assets/news-dark.svg'
+import posts from '../../Assets/posts.svg'
+import postsDark from '../../Assets/posts-dark.svg'
 import messages from '../../Assets/messages.svg'
 import messagesDark from '../../Assets/messages-dark.svg'
-import friends from '../../Assets/friends.svg'
-import friendsDark from '../../Assets/friends-dark.svg'
+import search from '../../Assets/search.svg'
+import searchDark from '../../Assets/search-dark.svg'
 // Libraries
 import {NavLink} from 'react-router-dom'
 import {useSelector} from 'react-redux'
@@ -37,24 +37,34 @@ const NavBar = () => {
             </NavLink>
             <NavLink to={'/messages'} className={'navbar__link'} style={bgStyle}>
                 {currentTheme === 'dark'
-                    ? <img src={messages} className={'navbar__svg'} alt="profile"/>
-                    : <img src={messagesDark} className={'navbar__svg'} alt="profile"/>
+                    ? <img src={messages} className={'navbar__svg'} alt="messages"/>
+                    : <img src={messagesDark} className={'navbar__svg'} alt="messages"/>
                 }
                 Messages
             </NavLink>
             <NavLink to={'/news'} className={'navbar__link'} style={bgStyle}>
                 {currentTheme === 'dark'
-                    ? <img src={news} className={'navbar__svg'} alt="profile"/>
-                    : <img src={newsDark} className={'navbar__svg'} alt="profile"/>
+                    ? <img src={posts} className={'navbar__svg'} alt="profile"/>
+                    : <img src={postsDark} className={'navbar__svg'} alt="profile"/>
                 }
-                News
+                Latest Posts
             </NavLink>
             <NavLink to={'/friends'} className={'navbar__link'} style={bgStyle}>
                 {currentTheme === 'dark'
-                    ? <img src={friends} className={'navbar__svg'} alt="profile"/>
-                    : <img src={friendsDark} className={'navbar__svg'} alt="profile"/>
+                    ? <img
+                        src={search}
+                        className={'navbar__svg'}
+                        alt="search"
+                        style={{transform: 'rotateY(180deg)', width: '23px', height: '23px'}}
+                    />
+                    : <img
+                        src={searchDark}
+                        className={'navbar__svg'}
+                        alt="search"
+                        style={{transform: 'rotateY(180deg)', width: '23px', height: '23px'}}
+                    />
                 }
-                Friends
+                Search
             </NavLink>
         </nav>
     )

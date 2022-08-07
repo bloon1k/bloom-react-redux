@@ -3,13 +3,13 @@ import React from 'react'
 import {Routes as MyRoutes, Route, Navigate} from 'react-router-dom'
 // Children
 import Header from '../../components/Header/Header'
-import Profile from '../../components/MyProfile/Profile'
+import Profile from '../../components/Profile/Profile'
 import NoPage from '../../components/NoPage/NoPage'
 import SignIn from '../../components/SignIn/SignIn'
 import SignUpForm from '../../components/SignUpForm/SignUpForm'
 import Messages from '../../components/Messages/Messages'
-import News from '../../components/News/News'
-import Friends from '../../components/Friends/Friends'
+import Posts from '../../components/Posts/Posts'
+import Search from '../../components/Search/Search'
 import RequireAuth from '../RequireAuth'
 import CreateUserName from '../../components/CreateUserName/CreateUserName'
 
@@ -40,12 +40,12 @@ const Routes = () => {
             }/>
             <Route path={'news'} element={
                 <RequireAuth>
-                    <News/>
+                    <Posts/>
                 </RequireAuth>
             }/>
             <Route path={'friends'} element={
                 <RequireAuth>
-                    <Friends/>
+                    <Search/>
                 </RequireAuth>
             }/>
 
