@@ -11,6 +11,7 @@ import Messages from '../../components/Messages/Messages'
 import News from '../../components/News/News'
 import Friends from '../../components/Friends/Friends'
 import RequireAuth from '../RequireAuth'
+import CreateUserName from '../../components/CreateUserName/CreateUserName'
 
 const Routes = () => {
     return (
@@ -18,6 +19,9 @@ const Routes = () => {
             <Route path={'sign-in'} element={<SignIn/>}/>
             <Route path={'sign-up'} element={<SignUpForm/>}/>
             <Route path={'bloom-react-redux'} element={<Navigate to={'/'}/>}/>
+
+            {/* Will be routed to create-username if user has no userName (Google account first login) */}
+            <Route path={'create-username'} element={<CreateUserName/>}/>
 
             <Route path={'/'} element={
                 <RequireAuth>

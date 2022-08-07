@@ -6,12 +6,14 @@ import {Link, Navigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import {v4 as uuid} from 'uuid'
 // Assets
 import horizontal from '../../Assets/horizontal.svg'
 // Redux
 import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../../redux/features/authSlice'
-import {setEmail, setUserName, setPassword} from '../../redux/features/userDataSlice'
+import {setUserID, setEmail, setUserName, setPassword} from '../../redux/features/userDataSlice'
+import {setCurrentUserNameValue} from '../../redux/features/changeHandlerSlice'
 import {occurredSignUpError} from '../../redux/features/errorsSlice'
 // Firebase
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
@@ -41,30 +43,38 @@ const SignUpForm = () => {
 
     const signUpError = useSelector(state => state.errors.signUpError)
 
+
     function submitSignUpForm(data) {
         // Clear sign up errors before proceed
+        let error = false
         dispatch(occurredSignUpError(''))
         // Getting all docs from collection to check whether user with entered userName already exists
         getDocs(collection(database, 'usersData'))
             .then(async (result) => {
                 await result.forEach(doc => {
-                    if (doc.id === data.userName) {
+                    if (doc.data().userName === data.userName) {
                         // Entered userName already exists and cannot be used for registration
                         dispatch(occurredSignUpError('This Username is already taken, please try another'))
+                        error = true
                         console.log('error dispatched')
                     }
                 })
-                if (!signUpError) {
+                if (!error) {
                     // Entered userName is unique, proceed with registration
                     createUserWithEmailAndPassword(auth, data.email, data.password)
                         .then(async (userCredential) => {
                             // Sign up success
                             // Remember to redux store
+                            const newUserID = uuid()
+                            dispatch(setUserID(newUserID))
                             dispatch(setUserName(data.userName))
+                            // CurrentUserName is required to change userName in Profile page
+                            dispatch(setCurrentUserNameValue(data.userName))
                             dispatch(setEmail(data.email))
                             dispatch(setPassword(data.password))
                             // Send data to DB (update usersData collection)
-                            await setDoc(doc(database, 'usersData', data.userName), {
+                            setDoc(doc(database, 'usersData', newUserID), {
+                                userID: newUserID,
                                 userName: data.userName,
                                 email: data.email,
                                 password: data.password,
@@ -85,7 +95,9 @@ const SignUpForm = () => {
     }
 
     const isLoggedIn = useSelector(state => state.auth.isAuth)
+    const googleUserHalfLogged = useSelector(state => state.userData.userID)
     if (isLoggedIn) return <Navigate to={'/'}/>
+    if (googleUserHalfLogged) return <Navigate to={'/create-username'}/>
 
     return (
         <form className={'sign-up-form'} onSubmit={handleSubmit(submitSignUpForm)}>
