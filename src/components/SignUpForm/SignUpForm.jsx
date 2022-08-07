@@ -19,6 +19,7 @@ import {occurredSignUpError} from '../../redux/features/errorsSlice'
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 // Firestore
 import {doc, setDoc, collection, getDocs} from 'firebase/firestore'
+import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
 
 const schema = yup.object().shape({
     userName: yup.string().min(4, 'At least 4 characters').max(35, 'No longer than 35 characters').required('Username' +
@@ -62,16 +63,9 @@ const SignUpForm = () => {
                 if (!error) {
                     // Entered userName is unique, proceed with registration
                     createUserWithEmailAndPassword(auth, data.email, data.password)
-                        .then(async (userCredential) => {
+                        .then((userCredential) => {
                             // Sign up success
-                            // Remember to redux store
                             const newUserID = uuid()
-                            dispatch(setUserID(newUserID))
-                            dispatch(setUserName(data.userName))
-                            // CurrentUserName is required to change userName in Profile page
-                            dispatch(setCurrentUserNameValue(data.userName))
-                            dispatch(setEmail(data.email))
-                            dispatch(setPassword(data.password))
                             // Send data to DB (update usersData collection)
                             setDoc(doc(database, 'usersData', newUserID), {
                                 userID: newUserID,
@@ -80,9 +74,28 @@ const SignUpForm = () => {
                                 password: data.password,
                                 photoURL: ''
                             })
-                            // Auto-login after
-                            dispatch(login())
-                            reset()
+                                .then(() => {
+                                    // Send data to DB (update followers collection)
+                                    setDoc(doc(database, 'followers', newUserID), {
+                                        followers: [],
+                                        following: []
+                                    })
+                                        .then(() => {
+                                            // Remember to redux store
+                                            dispatch(setFollowers([]))
+                                            dispatch(setFollowing([]))
+
+                                            dispatch(setUserID(newUserID))
+                                            dispatch(setUserName(data.userName))
+                                            // CurrentUserName is required to change userName in Profile page
+                                            dispatch(setCurrentUserNameValue(data.userName))
+                                            dispatch(setEmail(data.email))
+                                            dispatch(setPassword(data.password))
+                                            // Auto-login after
+                                            dispatch(login())
+                                            reset()
+                                        })
+                                })
                         })
                         .catch((error) => {
                             // Dispatched error will be displayed under the form

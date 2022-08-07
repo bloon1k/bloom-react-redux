@@ -1,0 +1,86 @@
+@use '../../styles/colors';
+@import '../../styles/mixins';
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 7%;
+  width: 100%;
+  color: colors.$font;
+
+  // Upper side
+  &__controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 3%;
+  }
+
+  // Upper-left
+  &__image {
+    border: 2px solid colors.$secondary;
+    border-radius: 50%;
+    background: colors.$font;
+    width: 300px;
+    height: 300px;
+  }
+
+  // Upper-right
+  &__data-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+  }
+
+  &__username {
+    font-size: 2.3em;
+    color: colors.$font;
+  }
+
+  &__change-input {
+    @include input;
+    width: 50%;
+    font-size: 2em;
+  }
+
+  &__counters {
+    font-size: 1.2em;
+    display: flex;
+    gap: 2em;
+  }
+
+  &__followers {
+    text-align: center;
+  }
+
+  &__following {
+    text-align: center;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: .7em;
+    width: 80%;
+  }
+
+  &__change-image {
+    @include button;
+    width: 50%;
+    height: 45px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  &__change-username {
+    @include button;
+    width: 50%;
+    height: 45px;
+    text-align: center;
+  }
+}
+
+#fileInp {
+  display: none;
+}

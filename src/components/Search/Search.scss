@@ -1,0 +1,6 @@
+@use '../../styles/colors';
+@import '../../styles/mixins';
+
+.search {
+  color: colors.$font;
+}

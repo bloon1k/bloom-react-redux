@@ -5,6 +5,7 @@ import firebaseReducer from '../features/firebaseSlice'
 import userDataReducer from '../features/userDataSlice'
 import errorsReducer from '../features/errorsSlice'
 import changeHandlerReducer from '../features/changeHandlerSlice'
+import followersDataReducer from '../features/followersDataSlice'
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         userData: userDataReducer,
         errors: errorsReducer,
         changeHandler: changeHandlerReducer,
+        followersData: followersDataReducer,
     },
 })

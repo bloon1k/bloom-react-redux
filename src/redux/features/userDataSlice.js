@@ -33,9 +33,18 @@ const userDataSlice = createSlice({
             state.email = ''
             state.password = ''
             state.photoURL = ''
+            state.followers = []
+            state.following = []
         }
     }
 })
 
-export const {setUserID, setUserName, setEmail, setPassword, setPhoto, clearUserData} = userDataSlice.actions
+export const {
+    setUserID,
+    setUserName,
+    setEmail,
+    setPassword,
+    setPhoto,
+    clearUserData
+} = userDataSlice.actions
 export default userDataSlice.reducer

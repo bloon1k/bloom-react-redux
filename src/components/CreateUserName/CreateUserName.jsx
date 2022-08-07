@@ -9,6 +9,7 @@ import {setUserName} from '../../redux/features/userDataSlice'
 import {setCurrentUserNameValue, stopUserNameChange} from '../../redux/features/changeHandlerSlice'
 import {login} from '../../redux/features/authSlice'
 import {occurredSignUpError} from '../../redux/features/errorsSlice'
+import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
 // Firebase
 import {collection, doc, getDocs, setDoc} from 'firebase/firestore'
 
@@ -40,8 +41,6 @@ const CreateUserName = () => {
                     }
                 })
                 if (!error && [...currentUserNameValue].length > 1) {
-                    dispatch(setUserName(currentUserNameValue))
-                    dispatch(setCurrentUserNameValue())
                     // Send new user data to firestore
                     setDoc(doc(database, 'usersData', currentUser.userID), {
                         userID: currentUser.userID,
@@ -50,8 +49,20 @@ const CreateUserName = () => {
                         password: '',
                         photoURL: ''
                     })
-                    dispatch(stopUserNameChange())
-                    dispatch(login())
+                        .then(() => {
+                            setDoc(doc(database, 'followers', currentUser.userID), {
+                                followers: [],
+                                following: []
+                            })
+                                .then(() => {
+                                    dispatch(setFollowers([]))
+                                    dispatch(setFollowing([]))
+                                    dispatch(setUserName(currentUserNameValue))
+                                    dispatch(setCurrentUserNameValue())
+                                    dispatch(stopUserNameChange())
+                                    dispatch(login())
+                                })
+                        })
                 } else {
                     dispatch(occurredSignUpError('Username is too short or is already taken, please try another'))
                 }
