@@ -1,50 +1,50 @@
 @use '../../styles/colors';
+@import '../../styles/mixins';
 
 .profile {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   padding-bottom: 7%;
   width: 100%;
   color: colors.$font;
 
+  &__controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 3%;
+  }
+
   &__image {
-    border: 5px solid colors.$secondary;
-    border-radius: .7em;
+    border: 2px solid colors.$secondary;
+    border-radius: 50%;
     background: colors.$font;
-    max-width: 300px;
-    max-height: 300px;
+    height: 300px;
 
     &-wrapper {
       display: flex;
       flex-direction: column;
+      width: 300px;
       gap: 1em;
     }
   }
 
   &__change-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include button;
     cursor: pointer;
-    width: 100%;
-    height: 40px;
-    background: rgba(0, 0, 0, 0);
-    border: 2px solid colors.$secondary;
-    border-radius: .7em;
-    transition: .3s all;
-
-    &:hover {
-      background: colors.$secondary;
-    }
+    text-align: center;
+    padding: .5em 1em;
   }
 
-  &__data {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 3%;
+
+  &__change-input {
+    @include input;
+  }
+
+  &__change-username {
+    @include button;
+    text-align: center;
+    padding: .5em 1em;
   }
 }
 

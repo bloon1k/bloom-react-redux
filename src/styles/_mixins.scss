@@ -1,0 +1,30 @@
+@use './colors';
+
+@mixin button {
+  background: rgba(0, 0, 0, 0);
+  color: colors.$font;
+  border: 2px solid colors.$secondary;
+  border-radius: .7em;
+  font-size: 1.1em;
+  padding: 1%;
+  transition: .3s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background: colors.$secondary;
+    color: white;
+  }
+}
+
+@mixin input {
+  background: rgba(0, 0, 0, 0);
+  color: colors.$font;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 2px solid colors.$secondary;
+  padding-left: .3em;
+  font-size: 1.3em;
+}
