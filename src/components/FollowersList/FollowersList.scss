@@ -1,0 +1,13 @@
+@use '../../styles/colors';
+@import '../../styles/mixins';
+
+.followers-list {
+  width: 100%;
+  color: colors.$font;
+
+  &__back {
+    @include button;
+    width: 10%;
+    height: 40px;
+  }
+}

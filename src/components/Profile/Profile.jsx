@@ -4,23 +4,27 @@ import './Profile.scss'
 // Assets
 import guestPicture from '../../Assets/guest.png'
 // Libraries
+import {v4 as uuid} from 'uuid'
+import {Link} from 'react-router-dom'
+// Redux
 import {useSelector, useDispatch} from 'react-redux'
 import {setPhoto, setUserName} from '../../redux/features/userDataSlice'
-import {v4 as uuid} from 'uuid'
-// Redux
 import {startUserNameChange, stopUserNameChange, setCurrentUserNameValue} from '../../redux/features/changeHandlerSlice'
+import {occurredChangeUserNameError} from '../../redux/features/errorsSlice'
 // Firestore
 import {collection, doc, getDocs, updateDoc} from 'firebase/firestore'
 // Firebase Storage
 import {ref, getStorage, uploadBytes, getDownloadURL, deleteObject} from 'firebase/storage'
+// Children
+import Posts from '../Posts/Posts'
 
-import {occurredChangeUserNameError} from '../../redux/features/errorsSlice'
 
 const Profile = () => {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.userData)
     const followersData = useSelector(state => state.followersData)
+    const postList = useSelector(state => state.posts.postList)
     const storage = getStorage()
     const database = useSelector(state => state.firebase.database)
     const isUserNameChanged = useSelector(state => state.changeHandler.isUserNameChanged)
@@ -102,11 +106,14 @@ const Profile = () => {
 
             <section className="profile__controls">
 
-                <img
-                    src={user.photoURL ? user.photoURL : guestPicture}
-                    alt={'profile pic'}
-                    className={'profile__image'}
-                />
+                <div className="profile__image-wrapper">
+                    <img
+                        src={user.photoURL ? user.photoURL : guestPicture}
+                        alt={'profile pic'}
+                        className={'profile__image'}
+                    />
+                </div>
+
 
                 <div className="profile__data-wrapper">
                     {isUserNameChanged
@@ -122,14 +129,18 @@ const Profile = () => {
                     {changeUserNameError && <span className={'profile__error'}>{changeUserNameError}</span>}
 
                     <div className="profile__counters">
-                        <div className="profile__followers">
+                        <div className="profile__posts">
+                            Posts <br/>
+                            {postList.length}
+                        </div>
+                        <Link to={'/followers-list'} className="profile__followers">
                             Followers <br/>
                             {followersData.followers.length}
-                        </div>
-                        <div className="profile__following">
+                        </Link>
+                        <Link to={'/following-list'} className="profile__following">
                             Following <br/>
                             {followersData.following.length}
-                        </div>
+                        </Link>
                     </div>
 
                     <div className="profile__buttons">
@@ -156,9 +167,7 @@ const Profile = () => {
 
             </section>
 
-            <section className="profile__posts">
-                your posts here
-            </section>
+            <Posts/>
 
         </section>
     )

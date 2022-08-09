@@ -33,8 +33,6 @@ const userDataSlice = createSlice({
             state.email = ''
             state.password = ''
             state.photoURL = ''
-            state.followers = []
-            state.following = []
         }
     }
 })

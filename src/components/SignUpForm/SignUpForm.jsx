@@ -15,11 +15,12 @@ import {login} from '../../redux/features/authSlice'
 import {setUserID, setEmail, setUserName, setPassword} from '../../redux/features/userDataSlice'
 import {setCurrentUserNameValue} from '../../redux/features/changeHandlerSlice'
 import {occurredSignUpError} from '../../redux/features/errorsSlice'
+import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
+import {setPosts} from '../../redux/features/postsSlice'
 // Firebase
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 // Firestore
 import {doc, setDoc, collection, getDocs} from 'firebase/firestore'
-import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
 
 const schema = yup.object().shape({
     userName: yup.string().min(4, 'At least 4 characters').max(35, 'No longer than 35 characters').required('Username' +
@@ -81,19 +82,23 @@ const SignUpForm = () => {
                                         following: []
                                     })
                                         .then(() => {
-                                            // Remember to redux store
-                                            dispatch(setFollowers([]))
-                                            dispatch(setFollowing([]))
-
-                                            dispatch(setUserID(newUserID))
-                                            dispatch(setUserName(data.userName))
-                                            // CurrentUserName is required to change userName in Profile page
-                                            dispatch(setCurrentUserNameValue(data.userName))
-                                            dispatch(setEmail(data.email))
-                                            dispatch(setPassword(data.password))
-                                            // Auto-login after
-                                            dispatch(login())
-                                            reset()
+                                            setDoc(doc(database, 'posts', newUserID), {
+                                                postList: [],
+                                            })
+                                                .then(() => {
+                                                    dispatch(setPosts([]))
+                                                    dispatch(setFollowers([]))
+                                                    dispatch(setFollowing([]))
+                                                    dispatch(setUserID(newUserID))
+                                                    dispatch(setUserName(data.userName))
+                                                    // CurrentUserName is required to change userName in Profile page
+                                                    dispatch(setCurrentUserNameValue(data.userName))
+                                                    dispatch(setEmail(data.email))
+                                                    dispatch(setPassword(data.password))
+                                                    // Auto-login after
+                                                    dispatch(login())
+                                                    reset()
+                                                })
                                         })
                                 })
                         })

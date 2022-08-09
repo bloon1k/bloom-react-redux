@@ -1,0 +1,138 @@
+@use '../../styles/colors';
+@import '../../styles/mixins';
+
+.create-post {
+  width: 100%;
+  color: colors.$font;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+
+  & > span {
+    font-size: 2em;
+    font-weight: 700;
+  }
+
+  &__form {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+  }
+
+  &__upper {
+    width: 100%;
+    display: flex;
+    //align-items: center;
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      height: fit-content;
+      padding: 3%;
+      gap: 2em;
+    }
+  }
+
+  &__label {
+    @include button;
+    height: 45px;
+    width: 100%;
+    position: relative;
+
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      width: 50%;
+      padding: 3%;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  &__input {
+    @include input;
+    height: 45px;
+
+    &:active &__placeholder {
+      top: 10%;
+    }
+
+    &-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: fit-content;
+    }
+  }
+
+  &__placeholder {
+    opacity: .7;
+    transition: .3s all;
+    position: absolute;
+    top: 20%;
+    left: 1%;
+    font-size: 1.3em;
+    color: colors.$font;
+
+    &-move {
+      top: -30%;
+      font-size: .8em;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: 110%;
+    left: 1%;
+    font-size: .8em;
+    color: colors.$red;
+  }
+
+  &__image-error {
+    position: absolute;
+    top: 110%;
+    left: 1%;
+    font-size: .8em;
+    color: colors.$red;
+  }
+
+  &__text {
+    font-size: 1.5em;
+  }
+
+  &__button {
+    @include button;
+    width: 50%;
+    height: 45px;
+  }
+}
+
+#create-post__image-input {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .create-post {
+
+    &__upper {
+      flex-direction: column;
+    }
+
+    &__label-wrapper {
+      width: 100%;
+    }
+
+    &__upper-right {
+      width: 100%;
+    }
+  }
+}

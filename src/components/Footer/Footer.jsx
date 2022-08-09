@@ -2,15 +2,17 @@ import React from 'react'
 // Styles
 import './Footer.scss'
 import {NavLink} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 import myProfile from '../../Assets/myProfile.svg'
 import myProfileDark from '../../Assets/myProfile-dark.svg'
 import messages from '../../Assets/messages.svg'
 import messagesDark from '../../Assets/messages-dark.svg'
-import news from '../../Assets/posts.svg'
-import newsDark from '../../Assets/posts-dark.svg'
-import friends from '../../Assets/friends.svg'
-import friendsDark from '../../Assets/friends-dark.svg'
-import {useSelector} from 'react-redux'
+import createPost from '../../Assets/create-post.png'
+import createPostDark from '../../Assets/create-post-dark.png'
+import posts from '../../Assets/posts.svg'
+import postsDark from '../../Assets/posts-dark.svg'
+import search from '../../Assets/search.svg'
+import searchDark from '../../Assets/search-dark.svg'
 
 const Footer = () => {
 
@@ -20,37 +22,58 @@ const Footer = () => {
     const auth = useSelector(state => {
         return state.auth
     })
+    // Style active link
+    const bgStyle = ({isActive}) => {
+        return {
+            border: isActive ? currentTheme === 'dark' ? '2px solid #404040' : '2px solid #b1b3b9' : null
+        }
+    }
     if (!auth.isAuth) return null
 
     return (
         <footer className={'footer'}>
-            <NavLink to={'/'} className={'footer__link'}>
+            <NavLink to={'/'} className={'footer__link'} style={bgStyle}>
                 {currentTheme === 'dark'
                     ? <img src={myProfile} className={'footer__svg'} alt="profile"/>
                     : <img src={myProfileDark} className={'footer__svg'} alt="profile"/>
                 }
-                <span className="footer__text">My Profile</span>
             </NavLink>
-            <NavLink to={'/messages'} className={'footer__link'}>
+            <NavLink to={'/messages'} className={'footer__link'} style={bgStyle}>
                 {currentTheme === 'dark'
-                    ? <img src={messages} className={'footer__svg'} alt="profile"/>
-                    : <img src={messagesDark} className={'footer__svg'} alt="profile"/>
+                    ? <img src={messages} className={'footer__svg'} alt="messages"/>
+                    : <img src={messagesDark} className={'footer__svg'} alt="messages"/>
                 }
-                <span className="footer__text">Messages</span>
             </NavLink>
-            <NavLink to={'/news'} className={'footer__link'}>
+            <NavLink to={'/create-post'} className={'footer__link'} style={bgStyle}>
                 {currentTheme === 'dark'
-                    ? <img src={news} className={'footer__svg'} alt="profile"/>
-                    : <img src={newsDark} className={'footer__svg'} alt="profile"/>
+                    ?
+                    <img src={createPost} className={'footer__svg'} alt="posts"
+                         style={{width: '28px', height: '28px'}}/>
+                    : <img src={createPostDark} className={'footer__svg'} alt="posts"
+                           style={{width: '28px', height: '28px'}}/>
                 }
-                <span className="footer__text">News</span>
             </NavLink>
-            <NavLink to={'/friends'} className={'footer__link'}>
+            <NavLink to={'/latest-posts'} className={'footer__link'} style={bgStyle}>
                 {currentTheme === 'dark'
-                    ? <img src={friends} className={'footer__svg'} alt="profile"/>
-                    : <img src={friendsDark} className={'footer__svg'} alt="profile"/>
+                    ? <img src={posts} className={'footer__svg'} alt="posts"/>
+                    : <img src={postsDark} className={'footer__svg'} alt="posts"/>
                 }
-                <span className="footer__text">Friends</span>
+            </NavLink>
+            <NavLink to={'/search'} className={'footer__link'} style={bgStyle}>
+                {currentTheme === 'dark'
+                    ? <img
+                        src={search}
+                        className={'footer__svg'}
+                        alt="search"
+                        style={{transform: 'rotateY(180deg)', width: '23px', height: '23px'}}
+                    />
+                    : <img
+                        src={searchDark}
+                        className={'footer__svg'}
+                        alt="search"
+                        style={{transform: 'rotateY(180deg)', width: '23px', height: '23px'}}
+                    />
+                }
             </NavLink>
         </footer>
     )
