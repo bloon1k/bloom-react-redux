@@ -4,6 +4,8 @@ import './NavBar.scss'
 // Assets
 import myProfile from '../../Assets/myProfile.svg'
 import myProfileDark from '../../Assets/myProfile-dark.svg'
+import createPost from '../../Assets/create-post.png'
+import createPostDark from '../../Assets/create-post-dark.png'
 import posts from '../../Assets/posts.svg'
 import postsDark from '../../Assets/posts-dark.svg'
 import messages from '../../Assets/messages.svg'
@@ -21,7 +23,7 @@ const NavBar = () => {
     // Style active link
     const bgStyle = ({isActive}) => {
         return {
-            background: isActive ? currentTheme === 'dark' ? '#404040' : '#b1b3b9' : null
+            border: isActive ? currentTheme === 'dark' ? '2px solid #404040' : '2px solid #b1b3b9' : null
         }
     }
     if (!auth.isAuth) return null
@@ -42,14 +44,24 @@ const NavBar = () => {
                 }
                 Messages
             </NavLink>
-            <NavLink to={'/news'} className={'navbar__link'} style={bgStyle}>
+            <NavLink to={'/create-post'} className={'navbar__link'} style={bgStyle}>
                 {currentTheme === 'dark'
-                    ? <img src={posts} className={'navbar__svg'} alt="profile"/>
-                    : <img src={postsDark} className={'navbar__svg'} alt="profile"/>
+                    ?
+                    <img src={createPost} className={'navbar__svg'} alt="posts"
+                         style={{width: '28px', height: '28px'}}/>
+                    : <img src={createPostDark} className={'navbar__svg'} alt="posts"
+                           style={{width: '28px', height: '28px'}}/>
+                }
+                Create Post
+            </NavLink>
+            <NavLink to={'/latest-posts'} className={'navbar__link'} style={bgStyle}>
+                {currentTheme === 'dark'
+                    ? <img src={posts} className={'navbar__svg'} alt="posts"/>
+                    : <img src={postsDark} className={'navbar__svg'} alt="posts"/>
                 }
                 Latest Posts
             </NavLink>
-            <NavLink to={'/friends'} className={'navbar__link'} style={bgStyle}>
+            <NavLink to={'/search'} className={'navbar__link'} style={bgStyle}>
                 {currentTheme === 'dark'
                     ? <img
                         src={search}

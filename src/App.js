@@ -7,11 +7,20 @@ import ApplicationWrapper from './components/ApplicationWrapper/ApplicationWrapp
 import Footer from './components/Footer/Footer'
 
 // LOGOUT SHOULD CLEAR ALL REDUX STATES
+// NEED ADAPTIVE FOR PROFILE PAGE
+// followers/following pages need to create content there
+
+// checklist for 9 aug
+// add post mechanic
+// good ui for followers/ing
+// follow mechanic
+// create some account and follow each other
 
 // navbar is not adaptive
 // make sign up form inputs less width, they need to look cool
 // login() should dispatch sign in/up errors, so they are not shown after logout
 // remember login to local storage
+// remember theme to local storage
 // add loaders on all requests
 // add change image error handling via popups maybe
 // add success UI

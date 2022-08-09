@@ -12,6 +12,7 @@ import {occurredSignUpError} from '../../redux/features/errorsSlice'
 import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
 // Firebase
 import {collection, doc, getDocs, setDoc} from 'firebase/firestore'
+import {setPosts} from '../../redux/features/postsSlice'
 
 const CreateUserName = () => {
 
@@ -55,12 +56,18 @@ const CreateUserName = () => {
                                 following: []
                             })
                                 .then(() => {
-                                    dispatch(setFollowers([]))
-                                    dispatch(setFollowing([]))
-                                    dispatch(setUserName(currentUserNameValue))
-                                    dispatch(setCurrentUserNameValue())
-                                    dispatch(stopUserNameChange())
-                                    dispatch(login())
+                                    setDoc(doc(database, 'posts', currentUser.userID), {
+                                        postList: [],
+                                    })
+                                        .then(() => {
+                                            dispatch(setPosts([]))
+                                            dispatch(setFollowers([]))
+                                            dispatch(setFollowing([]))
+                                            dispatch(setUserName(currentUserNameValue))
+                                            dispatch(setCurrentUserNameValue())
+                                            dispatch(stopUserNameChange())
+                                            dispatch(login())
+                                        })
                                 })
                         })
                 } else {

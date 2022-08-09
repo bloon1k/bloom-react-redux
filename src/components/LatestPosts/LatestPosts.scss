@@ -1,0 +1,6 @@
+@use '../../styles/colors';
+@import '../../styles/mixins';
+
+.posts {
+  color: colors.$font;
+}

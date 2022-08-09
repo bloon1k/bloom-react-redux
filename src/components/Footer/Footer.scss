@@ -21,14 +21,10 @@
     font-size: .8em;
     color: colors.$font;
     transition: .3s all;
-    width: 140px;
-    height: 40px;
-    padding: 0 1em;
+    width: 20%;
+    height: 80%;
     border-radius: .5em;
-
-    &:hover {
-      background: colors.$secondary;
-    }
+    text-align: center;
 
     &.active {
       background: colors.$secondary;
@@ -36,8 +32,8 @@
   }
 
   &__svg {
-    width: 23px;
-    height: 23px;
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -50,14 +46,6 @@
 
 @media screen and (max-width: 480px) {
   .footer {
-
-    &__link {
-      height: 80%;
-    }
-
-    &__text {
-      display: none;
-    }
 
     &__svg {
       width: 27px;

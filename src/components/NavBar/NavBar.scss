@@ -15,14 +15,16 @@
     text-decoration: none;
     color: colors.$font;
     transition: .3s all;
-    width: 140px;
+    width: 160px;
     height: 40px;
     padding: 0 1em;
     border-radius: .5em;
     gap: .2em;
+    border: 2px solid rgba(0, 0, 0, 0);
 
     &:hover {
-      background: colors.$secondary;
+      //background: colors.$secondary;
+      border: 2px solid colors.$secondary;
     }
   }
 
@@ -39,8 +41,7 @@
     font-size: .9em;
 
     &__link {
-      width: 120px;
-      height: 35px;
+      width: 150px;
     }
   }
 }
