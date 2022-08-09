@@ -16,7 +16,7 @@ const Posts = () => {
 
     return (
         <section className={'posts'}>
-            {postList.map(post => {
+            {postList.slice().reverse().map(post => {
                 return <section key={uuid()} className={'post-item'} onClick={() => {
                     navigate('/see-post')
                     dispatch(setCurrentPostWatched(post))
