@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bloom-react-redux/static/css/main.9542ee17.css",
-    "main.js": "/bloom-react-redux/static/js/main.f35856a2.js",
+    "main.css": "/bloom-react-redux/static/css/main.4c10d26a.css",
+    "main.js": "/bloom-react-redux/static/js/main.d7fb888e.js",
     "static/media/logo-dark.png": "/bloom-react-redux/static/media/logo-dark.98e02ae6d0b48c6b131a.png",
     "static/media/logo-light.png": "/bloom-react-redux/static/media/logo-light.d4bbc4bdad26d5b2ebd2.png",
     "static/media/guest.png": "/bloom-react-redux/static/media/guest.fd55b7b63402d13e7565.png",
@@ -12,8 +12,6 @@
     "static/media/search.svg": "/bloom-react-redux/static/media/search.cd435b57317e191c3c151ab485469cd4.svg",
     "static/media/posts-dark.svg": "/bloom-react-redux/static/media/posts-dark.ba4e0bac21996a1efefdc5db578d5a7e.svg",
     "static/media/posts.svg": "/bloom-react-redux/static/media/posts.f8828153ccb9a5ff2787efe8b7c5355a.svg",
-    "static/media/friends-dark.svg": "/bloom-react-redux/static/media/friends-dark.c5cf999662bf7cb8992f9bca802094ff.svg",
-    "static/media/friends.svg": "/bloom-react-redux/static/media/friends.e4b5f88c5122cfc3391963a215e49b79.svg",
     "index.html": "/bloom-react-redux/index.html",
     "static/media/logout-dark.svg": "/bloom-react-redux/static/media/logout-dark.944649ba687eb8278e81c710fc61f84b.svg",
     "static/media/logout.svg": "/bloom-react-redux/static/media/logout.7370b003586c0f8e4f0722cd14a473cc.svg",
@@ -22,11 +20,11 @@
     "static/media/google.svg": "/bloom-react-redux/static/media/google.330a2dc7f18d7502647dc5d6f93812ec.svg",
     "static/media/myProfile-dark.svg": "/bloom-react-redux/static/media/myProfile-dark.56d1fe2b627b7a37d0341d45ddfa34e4.svg",
     "static/media/myProfile.svg": "/bloom-react-redux/static/media/myProfile.2bf312d6b46a7ab31348c7c7689a00fc.svg",
-    "main.9542ee17.css.map": "/bloom-react-redux/static/css/main.9542ee17.css.map",
-    "main.f35856a2.js.map": "/bloom-react-redux/static/js/main.f35856a2.js.map"
+    "main.4c10d26a.css.map": "/bloom-react-redux/static/css/main.4c10d26a.css.map",
+    "main.d7fb888e.js.map": "/bloom-react-redux/static/js/main.d7fb888e.js.map"
   },
   "entrypoints": [
-    "static/css/main.9542ee17.css",
-    "static/js/main.f35856a2.js"
+    "static/css/main.4c10d26a.css",
+    "static/js/main.d7fb888e.js"
   ]
 }
