@@ -10,11 +10,31 @@
   align-items: center;
   gap: 1em;
 
+  &__buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__back {
     @include button;
     width: 15%;
     height: 40px;
-    align-self: flex-start;
+  }
+
+  &__delete {
+    @include button;
+    padding: 0 1em;
+    height: 40px;
+
+    & > img {
+      width: 25px;
+      height: 25px;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0);
+    }
   }
 
   &__card {
@@ -42,6 +62,54 @@
   &__description {
     width: 50%;
     font-size: 1.5em;
+  }
+
+  // Delete post popup
+  .see-post__delete-popup {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 2em;
+      text-align: center;
+      padding: 3em;
+      margin: 0 1em;
+      box-shadow: 0 0 6px colors.$font;
+      border-radius: .8em;
+      background: colors.$primary;
+
+      & > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+        width: 100%;
+      }
+    }
+  }
+
+  &__button {
+    @include button;
+    width: 40%;
+    height: 45px;
+  }
+
+  &__red {
+    display: inline;
+    color: colors.$red;
+    font-weight: 700;
   }
 }
 

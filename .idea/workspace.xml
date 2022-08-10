@@ -5,13 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1f94413-57c8-4c9b-b7ad-72671f09b813" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/getUserPostsByID.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/trash-dark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/trash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/getUserDataByID.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreatePost/CreatePost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreatePost/CreatePost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Search/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Search/Search.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/Search.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SeePost/SeePost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeePost/SeePost.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SeePost/SeePost.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeePost/SeePost.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/features/errorsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/errorsSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,23 +46,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/user/Desktop/bloom-react-redux&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/user/Desktop/bloom-react-redux",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Errors",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components" />
@@ -68,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1659305174542</updated>
       <workItem from="1659305177164" duration="33136000" />
-      <workItem from="1659610284403" duration="80687000" />
+      <workItem from="1659610284403" duration="94367000" />
     </task>
     <servers />
   </component>

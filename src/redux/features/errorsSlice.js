@@ -22,6 +22,12 @@ const errorsSlice = createSlice({
         },
         occurredMissingImageError: (state, action) => {
             state.missingImageError = action.payload
+        },
+        clearErrors: state => {
+            state.signInError = ''
+            state.signUpError = ''
+            state.changeUserNameError = ''
+            state.missingImageError = ''
         }
     }
 })
@@ -30,6 +36,7 @@ export const {
     occurredSignInError,
     occurredSignUpError,
     occurredChangeUserNameError,
-    occurredMissingImageError
+    occurredMissingImageError,
+    clearErrors
 } = errorsSlice.actions
 export default errorsSlice.reducer

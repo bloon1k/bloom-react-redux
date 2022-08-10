@@ -15,6 +15,7 @@ import {doc, setDoc} from 'firebase/firestore'
 // Firebase storage
 import {getDownloadURL, getStorage, ref, uploadBytes} from 'firebase/storage'
 import {addPost} from '../../redux/features/postsSlice'
+import {useNavigate} from 'react-router-dom'
 
 const schema = yup.object().shape({
     description: yup.string().min(4, 'At least 4 characters').max(200, 'No longer than 200 characters').required()
@@ -30,12 +31,13 @@ const CreatePost = () => {
     const database = useSelector(state => state.firebase.database)
     const currentUserID = useSelector(state => state.userData.userID)
     const storage = getStorage()
+    const navigate = useNavigate()
 
     const [descValue, setDescValue] = useState('')
     const [isFile, setIsFile] = useState(false)
 
     function submitCreatePost() {
-        occurredMissingImageError('')
+        dispatch(occurredMissingImageError(''))
         if (isFile) {
             getUserPostsByID(database, currentUserID)
                 .then(previousPosts => {
@@ -67,6 +69,7 @@ const CreatePost = () => {
                                         })
                                             .then(() => {
                                                 dispatch(addPost(newPost))
+                                                navigate('/')
                                             })
                                     })
                                     .catch(error => console.log('Error while getting image url from Storage: ', error))

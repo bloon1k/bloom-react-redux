@@ -2,5 +2,54 @@
 @import '../../styles/mixins';
 
 .search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   color: colors.$font;
+
+  &__content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid colors.$font;
+  }
+
+  &__input {
+    @include input;
+    height: 45px;
+
+    &:active &__placeholder {
+      top: 10%;
+    }
+
+    &-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+    }
+  }
+
+  &__placeholder {
+    opacity: .7;
+    transition: .3s all;
+    position: absolute;
+    top: 20%;
+    left: 1%;
+    font-size: 1.3em;
+    color: colors.$font;
+
+    &-move {
+      top: -10%;
+      font-size: .8em;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: 105%;
+    left: 1%;
+    font-size: .8em;
+    color: colors.$red;
+  }
 }

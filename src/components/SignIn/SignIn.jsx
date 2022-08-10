@@ -37,6 +37,7 @@ import google from '../../Assets/google.svg'
 // Children
 import SignUp from '../SignUp/SignUp'
 import getPostsDataByID from '../../utils/getPostsDataByID'
+import getUserDataByID from '../../utils/getUserDataByID'
 
 const schema = yup.object().shape({
     email: yup.string().email('Please enter a valid email').required('Email is required'),
@@ -56,6 +57,8 @@ const SignIn = () => {
     const dispatch = useDispatch()
     const database = useSelector(state => state.firebase.database)
     const signInError = useSelector(state => state.errors.signInError)
+    const currentFollowersList = useSelector(state => state.followersData.followers)
+    const currentFollowingList = useSelector(state => state.followersData.following)
 
     const navigate = useNavigate()
 
@@ -70,10 +73,18 @@ const SignIn = () => {
                             .then(followersData => {
                                 getPostsDataByID(database, userData.userID)
                                     .then(postsData => {
+                                        followersData.followers.forEach(id => {
+                                            getUserDataByID(database, id)
+                                                .then(followerData => dispatch(setFollowers([...currentFollowersList, followerData])))
+                                        })
+                                        followersData.following.forEach(id => {
+                                            getUserDataByID(database, id)
+                                                .then(followingData => dispatch(setFollowing([...currentFollowingList, followingData])))
+                                        })
                                         dispatch(setPosts(postsData))
 
-                                        dispatch(setFollowers(followersData.followers))
-                                        dispatch(setFollowing(followersData.following))
+                                        // dispatch(setFollowers(followersData.followers))
+                                        // dispatch(setFollowing(followersData.following))
 
                                         dispatch(setUserID(userData.userID))
                                         dispatch(setUserName(userData.userName))
@@ -114,10 +125,18 @@ const SignIn = () => {
                                     .then(followersData => {
                                         getPostsDataByID(database, userData.userID)
                                             .then(postsData => {
+                                                followersData.followers.forEach(id => {
+                                                    getUserDataByID(database, id)
+                                                        .then(followerData => dispatch(setFollowers([...currentFollowersList, followerData])))
+                                                })
+                                                followersData.following.forEach(id => {
+                                                    getUserDataByID(database, id)
+                                                        .then(followingData => dispatch(setFollowing([...currentFollowingList, followingData])))
+                                                })
                                                 dispatch(setPosts(postsData))
 
-                                                dispatch(setFollowers(followersData.followers))
-                                                dispatch(setFollowing(followersData.following))
+                                                // dispatch(setFollowers(followersData.followers))
+                                                // dispatch(setFollowing(followersData.following))
 
                                                 dispatch(setUserID(userData.userID))
                                                 dispatch(setUserName(userData.userName))
@@ -167,10 +186,19 @@ const SignIn = () => {
                             .then(followersData => {
                                 getPostsDataByID(database, userData.userID)
                                     .then(postsData => {
+                                        followersData.followers.forEach(id => {
+                                            getUserDataByID(database, id)
+                                                .then(followerData => dispatch(setFollowers([...currentFollowersList, followerData])))
+                                        })
+                                        followersData.following.forEach(id => {
+                                            getUserDataByID(database, id)
+                                                .then(followingData => dispatch(setFollowing([...currentFollowingList, followingData])))
+                                        })
+
                                         dispatch(setPosts(postsData))
-                                        
-                                        dispatch(setFollowers(followersData.followers))
-                                        dispatch(setFollowing(followersData.following))
+
+                                        // dispatch(setFollowers(followersData.followers))
+                                        // dispatch(setFollowing(followersData.following))
 
                                         dispatch(setUserID(userData.userID))
                                         dispatch(setUserName(userData.userName))
