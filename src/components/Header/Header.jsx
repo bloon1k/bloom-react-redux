@@ -17,6 +17,7 @@ import sun from '../../Assets/sun.png'
 import logoutImg from '../../Assets/logout.svg'
 import logoutDarkImg from '../../Assets/logout-dark.svg'
 import NavBar from '../NavBar/NavBar'
+import {clearErrors} from '../../redux/features/errorsSlice'
 
 const Header = () => {
 
@@ -39,6 +40,7 @@ const Header = () => {
 
     function logoutHandler() {
         dispatch(clearUserData())
+        dispatch(clearErrors())
         dispatch(logout())
     }
 
