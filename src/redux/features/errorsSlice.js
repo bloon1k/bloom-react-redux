@@ -5,6 +5,7 @@ const initialState = {
     signUpError: '',
     changeUserNameError: '',
     missingImageError: '',
+    searchError: '',
 }
 
 const errorsSlice = createSlice({
@@ -23,11 +24,15 @@ const errorsSlice = createSlice({
         occurredMissingImageError: (state, action) => {
             state.missingImageError = action.payload
         },
+        occurredSearchError: (state, action) => {
+            state.searchError = action.payload
+        },
         clearErrors: state => {
             state.signInError = ''
             state.signUpError = ''
             state.changeUserNameError = ''
             state.missingImageError = ''
+            state.searchError = ''
         }
     }
 })
@@ -37,6 +42,7 @@ export const {
     occurredSignUpError,
     occurredChangeUserNameError,
     occurredMissingImageError,
+    occurredSearchError,
     clearErrors
 } = errorsSlice.actions
 export default errorsSlice.reducer

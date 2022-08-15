@@ -7,6 +7,8 @@ import changeTheme from '../../utils/changeTheme'
 import {changed} from '../../redux/features/themeSlice'
 import {logout} from '../../redux/features/authSlice'
 import {clearUserData} from '../../redux/features/userDataSlice'
+import {clearErrors} from '../../redux/features/errorsSlice'
+import {clearChangeHandler} from '../../redux/features/changeHandlerSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 // Assets
@@ -16,8 +18,9 @@ import moon from '../../Assets/moon.png'
 import sun from '../../Assets/sun.png'
 import logoutImg from '../../Assets/logout.svg'
 import logoutDarkImg from '../../Assets/logout-dark.svg'
+// Children
 import NavBar from '../NavBar/NavBar'
-import {clearErrors} from '../../redux/features/errorsSlice'
+import {clearPosts} from '../../redux/features/postsSlice'
 
 const Header = () => {
 
@@ -41,6 +44,8 @@ const Header = () => {
     function logoutHandler() {
         dispatch(clearUserData())
         dispatch(clearErrors())
+        dispatch(clearChangeHandler())
+        dispatch(clearPosts())
         dispatch(logout())
     }
 

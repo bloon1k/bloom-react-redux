@@ -17,9 +17,18 @@ const changeHandlerSlice = createSlice({
         },
         setCurrentUserNameValue: (state, action) => {
             state.currentUserNameValue = action.payload
+        },
+        clearChangeHandler: state => {
+            state.isUserNameChanged = false
+            state.currentUserNameValue = ''
         }
     }
 })
 
-export const {startUserNameChange, stopUserNameChange, setCurrentUserNameValue} = changeHandlerSlice.actions
+export const {
+    startUserNameChange,
+    stopUserNameChange,
+    setCurrentUserNameValue,
+    clearChangeHandler
+} = changeHandlerSlice.actions
 export default changeHandlerSlice.reducer

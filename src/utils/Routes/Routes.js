@@ -16,6 +16,7 @@ import FollowersList from '../../components/FollowersList/FollowersList'
 import FollowingList from '../../components/FollowingList/FollowingList'
 import CreatePost from '../../components/CreatePost/CreatePost'
 import SeePost from '../../components/SeePost/SeePost'
+import User from '../../components/User/User'
 
 const Routes = () => {
     return (
@@ -38,17 +39,17 @@ const Routes = () => {
                     <Profile/>
                 </RequireAuth>
             }/>
-            <Route path={'followers-list'} element={
+            <Route path={'followers-list/:userId'} element={
                 <RequireAuth>
                     <FollowersList/>
                 </RequireAuth>
             }/>
-            <Route path={'following-list'} element={
+            <Route path={'following-list/:userId'} element={
                 <RequireAuth>
                     <FollowingList/>
                 </RequireAuth>
             }/>
-            <Route path={'see-post'} element={
+            <Route path={'see-post/:userId'} element={
                 <RequireAuth>
                     <SeePost/>
                 </RequireAuth>
@@ -73,6 +74,8 @@ const Routes = () => {
                     <Search/>
                 </RequireAuth>
             }/>
+
+            <Route path={'user/:userId'} element={<User/>}/>
 
             <Route path={'*'} element={<NoPage/>}/>
         </MyRoutes>

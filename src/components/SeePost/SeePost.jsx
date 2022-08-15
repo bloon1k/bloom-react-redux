@@ -1,7 +1,7 @@
 import React from 'react'
 // Styles
 import './SeePost.scss'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 // Redux
 import {useDispatch, useSelector} from 'react-redux'
 import {setPosts} from '../../redux/features/postsSlice'
@@ -17,6 +17,7 @@ import trashDark from '../../Assets/trash-dark.png'
 const SeePost = () => {
 
     const navigate = useNavigate()
+    const {userId} = useParams()
     const currentPostWatched = useSelector(state => state.posts.currentPostWatched)
     const currentUserData = useSelector(state => state.userData)
     const currentPostList = useSelector(state => state.posts.postList)
@@ -71,14 +72,15 @@ const SeePost = () => {
             </div>
             <div className="see-post__buttons">
                 <button onClick={() => navigate(-1)} className={'see-post__back'}>Go back</button>
-                <button
+                {userId === 'me' && <button
                     onClick={() => document.getElementById('see-post__delete-popup').style.display = 'flex'}
                     className={'see-post__delete'}
                 >
                     {currentTheme === 'dark'
                         ? <img src={trash} alt="trash bin"/>
                         : <img src={trashDark} alt={'trash bin'}/>}
-                </button>
+                </button>}
+
             </div>
             <div className="see-post__card">
                 <img src={currentPostWatched.postImageURL} alt="post img" className={'see-post__image'}/>

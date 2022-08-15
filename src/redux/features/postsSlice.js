@@ -18,8 +18,12 @@ const postsSlice = createSlice({
         setCurrentPostWatched: (state, action) => {
             state.currentPostWatched = action.payload
         },
+        clearPosts: state => {
+            state.postList = []
+            state.currentPostWatched = {}
+        }
     }
 })
 
-export const {setPosts, addPost, setCurrentPostWatched} = postsSlice.actions
+export const {setPosts, addPost, setCurrentPostWatched, clearPosts} = postsSlice.actions
 export default postsSlice.reducer

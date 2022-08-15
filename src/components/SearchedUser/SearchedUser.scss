@@ -1,0 +1,49 @@
+@use '../../styles/colors';
+@import '../../styles/mixins';
+
+.searched-user {
+  text-decoration: none;
+  color: colors.$font;
+  padding: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //border: 1px solid colors.$font;
+  box-shadow: 0 0 5px colors.$secondary;
+  border-radius: 1em;
+  transition: .3s all;
+
+  &:hover {
+    box-shadow: 0 0 5px colors.$font;
+  }
+
+  // Left side
+  &__data {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  &__image {
+    border-radius: 50%;
+    width: 100px;
+    aspect-ratio: 1 / 1;
+  }
+
+  &__username {
+    font-size: 2em;
+  }
+
+  // Right side
+  &__buttons {
+    display: flex;
+    gap: 1em;
+  }
+
+  &__message, &__follow {
+    @include button;
+    padding: 0 1em;
+    height: 45px;
+  }
+}

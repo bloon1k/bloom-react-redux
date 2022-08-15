@@ -9,7 +9,6 @@ import {setUserName} from '../../redux/features/userDataSlice'
 import {setCurrentUserNameValue, stopUserNameChange} from '../../redux/features/changeHandlerSlice'
 import {login} from '../../redux/features/authSlice'
 import {occurredSignUpError} from '../../redux/features/errorsSlice'
-import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
 // Firebase
 import {collection, doc, getDocs, setDoc} from 'firebase/firestore'
 import {setPosts} from '../../redux/features/postsSlice'
@@ -61,8 +60,6 @@ const CreateUserName = () => {
                                     })
                                         .then(() => {
                                             dispatch(setPosts([]))
-                                            dispatch(setFollowers([]))
-                                            dispatch(setFollowing([]))
                                             dispatch(setUserName(currentUserNameValue))
                                             dispatch(setCurrentUserNameValue())
                                             dispatch(stopUserNameChange())

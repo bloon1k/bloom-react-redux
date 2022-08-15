@@ -15,7 +15,6 @@ import {login} from '../../redux/features/authSlice'
 import {setUserID, setEmail, setUserName, setPassword} from '../../redux/features/userDataSlice'
 import {setCurrentUserNameValue} from '../../redux/features/changeHandlerSlice'
 import {occurredSignUpError} from '../../redux/features/errorsSlice'
-import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
 import {setPosts} from '../../redux/features/postsSlice'
 // Firebase
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
@@ -87,8 +86,6 @@ const SignUpForm = () => {
                                             })
                                                 .then(() => {
                                                     dispatch(setPosts([]))
-                                                    dispatch(setFollowers([]))
-                                                    dispatch(setFollowing([]))
                                                     dispatch(setUserID(newUserID))
                                                     dispatch(setUserName(data.userName))
                                                     // CurrentUserName is required to change userName in Profile page

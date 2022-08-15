@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 // Styles
 import './Profile.scss'
 // Assets
@@ -13,6 +13,7 @@ import {startUserNameChange, stopUserNameChange, setCurrentUserNameValue} from '
 import {occurredChangeUserNameError} from '../../redux/features/errorsSlice'
 // Firestore
 import {collection, doc, getDocs, updateDoc} from 'firebase/firestore'
+import getFollowersDataByID from '../../utils/getFollowersDataByID'
 // Firebase Storage
 import {ref, getStorage, uploadBytes, getDownloadURL, deleteObject} from 'firebase/storage'
 // Children
@@ -23,7 +24,24 @@ const Profile = () => {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.userData)
-    const followersData = useSelector(state => state.followersData)
+    const [followersData, setFollowersData] = useState({
+        followers: [],
+        following: []
+    })
+
+    useEffect(() => {
+        // Get followers data from DB
+        getFollowersDataByID(database, user.userID)
+            .then(data => {
+                setFollowersData({
+                    followers: data.followers,
+                    following: data.following
+                })
+            })
+        // eslint-disable-next-line
+    }, [])
+
+    const isAuth = useSelector(state => state.auth.isAuth)
     const postList = useSelector(state => state.posts.postList)
     const storage = getStorage()
     const database = useSelector(state => state.firebase.database)
@@ -102,7 +120,7 @@ const Profile = () => {
     }
 
     return (
-        <section className="profile">
+        <section className="profile" style={{paddingLeft: isAuth ? '1em' : ''}}>
 
             <section className="profile__controls">
 
@@ -133,11 +151,11 @@ const Profile = () => {
                             Posts <br/>
                             {postList.length}
                         </div>
-                        <Link to={'/followers-list'} className="profile__followers">
+                        <Link to={`/followers-list/${user.userID}`} className="profile__followers">
                             Followers <br/>
                             {followersData.followers.length}
                         </Link>
-                        <Link to={'/following-list'} className="profile__following">
+                        <Link to={`/following-list/${user.userID}`} className="profile__following">
                             Following <br/>
                             {followersData.following.length}
                         </Link>
@@ -167,7 +185,7 @@ const Profile = () => {
 
             </section>
 
-            <Posts/>
+            <Posts postList={postList}/>
 
         </section>
     )

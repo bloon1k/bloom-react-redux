@@ -1,33 +1,42 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 // Styles
 import './FollowersList.scss'
 // Libraries
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
+import {v4 as uuid} from 'uuid'
+import getFollowersDataByID from '../../utils/getFollowersDataByID'
+import getUserDataByID from '../../utils/getUserDataByID'
 // Redux
 import {useSelector} from 'react-redux'
+// Children
+import SearchedUser from '../SearchedUser/SearchedUser'
 
 const FollowersList = () => {
 
     const navigate = useNavigate()
-    const followersList = useSelector(state => state.followersData.followers)
+    const [followersList, setFollowersList] = useState([])
+    const {userId} = useParams()
+    const database = useSelector(state => state.firebase.database)
 
-    return (
-        <section className={'followers-list'}>
-            <button onClick={() => navigate(-1)} className={'followers-list__back'}>Go back</button>
-            {followersList.map(follower => {
-                return <div className="follower">
-                    <div className="follower__data">
-                        <img src={follower.photoURL} alt="follower avatar" className={'follower__image'}/>
-                        <p className={'follower__username'}>{follower.userName}</p>
-                    </div>
-                    <div className="follower__buttons">
-                        <button className="follower__message">Message</button>
-                        <button className="follower__follow">Follow</button>
-                    </div>
-                </div>
-            })}
-        </section>
-    )
+    useEffect(() => {
+        getFollowersDataByID(database, userId)
+            .then(followersData => {
+                followersData.followers.forEach(followerId => {
+                    getUserDataByID(database, followerId)
+                        .then(followerData => {
+                            setFollowersList(prevState => [...prevState, followerData])
+                        })
+                })
+            })
+        // eslint-disable-next-line
+    }, [userId])
+
+    return <section className={'followers-list'}>
+        <button onClick={() => navigate(-1)} className={'followers-list__back'}>Go back</button>
+        {followersList.length !== 0 && followersList.map(follower => {
+            return <SearchedUser user={follower} key={uuid()}/>
+        })}
+    </section>
 }
 
 export default FollowersList
