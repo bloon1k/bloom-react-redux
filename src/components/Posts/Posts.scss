@@ -6,6 +6,11 @@
   display: flex;
   flex-wrap: wrap;
   //gap: 2em;
+
+  & > p {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .post-item {

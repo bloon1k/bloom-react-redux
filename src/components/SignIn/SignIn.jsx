@@ -7,7 +7,6 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import getUserDataByEmail from '../../utils/getUserDataByEmail'
-import getFollowersDataByID from '../../utils/getFollowersDataByID'
 import {v4 as uuid} from 'uuid'
 // Firebase
 import {
@@ -18,6 +17,7 @@ import {
     signInWithRedirect,
     getRedirectResult
 } from 'firebase/auth'
+import getPostsDataByID from '../../utils/getPostsDataByID'
 // Redux
 import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../../redux/features/authSlice'
@@ -28,7 +28,6 @@ import {
     setPassword,
     setPhoto,
 } from '../../redux/features/userDataSlice'
-import {setFollowers, setFollowing} from '../../redux/features/followersDataSlice'
 import {setPosts} from '../../redux/features/postsSlice'
 import {setCurrentUserNameValue, startUserNameChange} from '../../redux/features/changeHandlerSlice'
 import {occurredSignInError} from '../../redux/features/errorsSlice'
@@ -36,8 +35,6 @@ import {occurredSignInError} from '../../redux/features/errorsSlice'
 import google from '../../Assets/google.svg'
 // Children
 import SignUp from '../SignUp/SignUp'
-import getPostsDataByID from '../../utils/getPostsDataByID'
-import getUserDataByID from '../../utils/getUserDataByID'
 
 const schema = yup.object().shape({
     email: yup.string().email('Please enter a valid email').required('Email is required'),
@@ -57,8 +54,6 @@ const SignIn = () => {
     const dispatch = useDispatch()
     const database = useSelector(state => state.firebase.database)
     const signInError = useSelector(state => state.errors.signInError)
-    const currentFollowersList = useSelector(state => state.followersData.followers)
-    const currentFollowingList = useSelector(state => state.followersData.following)
 
     const navigate = useNavigate()
 
@@ -69,33 +64,18 @@ const SignIn = () => {
                 // userID, userName, photoURL are fetched from server using getUserDataByEmail
                 getUserDataByEmail(database, data.email)
                     .then(userData => {
-                        getFollowersDataByID(database, userData.userID)
-                            .then(followersData => {
-                                getPostsDataByID(database, userData.userID)
-                                    .then(postsData => {
-                                        followersData.followers.forEach(id => {
-                                            getUserDataByID(database, id)
-                                                .then(followerData => dispatch(setFollowers([...currentFollowersList, followerData])))
-                                        })
-                                        followersData.following.forEach(id => {
-                                            getUserDataByID(database, id)
-                                                .then(followingData => dispatch(setFollowing([...currentFollowingList, followingData])))
-                                        })
-                                        dispatch(setPosts(postsData))
-
-                                        // dispatch(setFollowers(followersData.followers))
-                                        // dispatch(setFollowing(followersData.following))
-
-                                        dispatch(setUserID(userData.userID))
-                                        dispatch(setUserName(userData.userName))
-                                        // currentUserName is required to change userName in Profile page
-                                        dispatch(setCurrentUserNameValue(userData.userName))
-                                        dispatch(setEmail(data.email))
-                                        dispatch(setPassword(data.password))
-                                        dispatch(setPhoto(userData.photoURL))
-                                        dispatch(login())
-                                        reset()
-                                    })
+                        getPostsDataByID(database, userData.userID)
+                            .then(postsData => {
+                                dispatch(setPosts(postsData))
+                                dispatch(setUserID(userData.userID))
+                                dispatch(setUserName(userData.userName))
+                                // currentUserName is required to change userName in Profile page
+                                dispatch(setCurrentUserNameValue(userData.userName))
+                                dispatch(setEmail(data.email))
+                                dispatch(setPassword(data.password))
+                                dispatch(setPhoto(userData.photoURL))
+                                dispatch(login())
+                                reset()
                             })
                     })
             })
@@ -120,38 +100,22 @@ const SignIn = () => {
                             dispatch(setEmail(user.email))
                             if (userData) {
                                 // If user exists already
-                                // Get followers data from DB
-                                getFollowersDataByID(database, userData.userID)
-                                    .then(followersData => {
-                                        getPostsDataByID(database, userData.userID)
-                                            .then(postsData => {
-                                                followersData.followers.forEach(id => {
-                                                    getUserDataByID(database, id)
-                                                        .then(followerData => dispatch(setFollowers([...currentFollowersList, followerData])))
-                                                })
-                                                followersData.following.forEach(id => {
-                                                    getUserDataByID(database, id)
-                                                        .then(followingData => dispatch(setFollowing([...currentFollowingList, followingData])))
-                                                })
-                                                dispatch(setPosts(postsData))
-
-                                                // dispatch(setFollowers(followersData.followers))
-                                                // dispatch(setFollowing(followersData.following))
-
-                                                dispatch(setUserID(userData.userID))
-                                                dispatch(setUserName(userData.userName))
-                                                // currentUserName is required to change userName in Profile page
-                                                dispatch(setCurrentUserNameValue(userData.userName))
-                                                if (userData.photoURL) {
-                                                    // If user has the uploaded avatar - we get it and remember +
-                                                    // display locally
-                                                    dispatch(setPhoto(userData.photoURL))
-                                                } else {
-                                                    // If user has no saved avatars - we use his Google avatar
-                                                    dispatch(setPhoto(user.photoURL))
-                                                }
-                                                dispatch(login())
-                                            })
+                                getPostsDataByID(database, userData.userID)
+                                    .then(postsData => {
+                                        dispatch(setPosts(postsData))
+                                        dispatch(setUserID(userData.userID))
+                                        dispatch(setUserName(userData.userName))
+                                        // currentUserName is required to change userName in Profile page
+                                        dispatch(setCurrentUserNameValue(userData.userName))
+                                        if (userData.photoURL) {
+                                            // If user has the uploaded avatar - we get it and remember +
+                                            // display locally
+                                            dispatch(setPhoto(userData.photoURL))
+                                        } else {
+                                            // If user has no saved avatars - we use his Google avatar
+                                            dispatch(setPhoto(user.photoURL))
+                                        }
+                                        dispatch(login())
                                     })
                             } else {
                                 // If user never existed
@@ -181,39 +145,22 @@ const SignIn = () => {
                     dispatch(setEmail(user.email))
                     if (userData) {
                         // If user exists already
-                        // Get followers data from DB
-                        getFollowersDataByID(database, userData.userID)
-                            .then(followersData => {
-                                getPostsDataByID(database, userData.userID)
-                                    .then(postsData => {
-                                        followersData.followers.forEach(id => {
-                                            getUserDataByID(database, id)
-                                                .then(followerData => dispatch(setFollowers([...currentFollowersList, followerData])))
-                                        })
-                                        followersData.following.forEach(id => {
-                                            getUserDataByID(database, id)
-                                                .then(followingData => dispatch(setFollowing([...currentFollowingList, followingData])))
-                                        })
-
-                                        dispatch(setPosts(postsData))
-
-                                        // dispatch(setFollowers(followersData.followers))
-                                        // dispatch(setFollowing(followersData.following))
-
-                                        dispatch(setUserID(userData.userID))
-                                        dispatch(setUserName(userData.userName))
-                                        // currentUserName is required to change userName in Profile page
-                                        dispatch(setCurrentUserNameValue(userData.userName))
-                                        if (userData.photoURL) {
-                                            // If user has the uploaded avatar - we get it and remember + display
-                                            // locally
-                                            dispatch(setPhoto(userData.photoURL))
-                                        } else {
-                                            // If user has no saved avatars - we use his Google avatar
-                                            dispatch(setPhoto(user.photoURL))
-                                        }
-                                        dispatch(login())
-                                    })
+                        getPostsDataByID(database, userData.userID)
+                            .then(postsData => {
+                                dispatch(setPosts(postsData))
+                                dispatch(setUserID(userData.userID))
+                                dispatch(setUserName(userData.userName))
+                                // currentUserName is required to change userName in Profile page
+                                dispatch(setCurrentUserNameValue(userData.userName))
+                                if (userData.photoURL) {
+                                    // If user has the uploaded avatar - we get it and remember + display
+                                    // locally
+                                    dispatch(setPhoto(userData.photoURL))
+                                } else {
+                                    // If user has no saved avatars - we use his Google avatar
+                                    dispatch(setPhoto(user.photoURL))
+                                }
+                                dispatch(login())
                             })
                     } else {
                         // If user never existed

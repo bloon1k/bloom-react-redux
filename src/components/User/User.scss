@@ -1,7 +1,7 @@
 @use '../../styles/colors';
 @import '../../styles/mixins';
 
-.profile {
+.user {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -46,12 +46,6 @@
     color: colors.$font;
   }
 
-  &__change-input {
-    @include input;
-    width: 50%;
-    font-size: 2em;
-  }
-
   &__counters {
     font-size: 1.2em;
     display: flex;
@@ -70,7 +64,7 @@
     width: 80%;
   }
 
-  &__change-image, &__change-username {
+  &__message, &__follow {
     @include button;
     width: 50%;
     height: 45px;
@@ -79,17 +73,9 @@
   }
 }
 
-#fileInp {
-  display: none;
-}
-
 // Adaptive media queries
 @media screen and (max-width: 1024px) {
   .profile {
-
-    &__buttons {
-      width: 95%;
-    }
 
     &__image {
       max-width: 250px;
@@ -101,10 +87,6 @@
         width: 250px;
         height: 250px;
       }
-    }
-
-    &__change-image, &__change-username {
-      font-size: .85em;
     }
   }
 }
@@ -119,10 +101,6 @@
     &__counters {
       gap: 1em;
       font-size: 1em;
-    }
-
-    &__buttons {
-      gap: .3em;
     }
 
     &__image {
