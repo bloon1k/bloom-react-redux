@@ -15,6 +15,7 @@ import sea from '../../Assets/sea.png'
 import seaDark from '../../Assets/sea-dark.png'
 // Children
 import SearchedUser from '../SearchedUser/SearchedUser'
+import {Link} from 'react-router-dom'
 
 const Search = () => {
 
@@ -29,6 +30,7 @@ const Search = () => {
 
     async function handleSearch() {
         if ([...searchInputRef.current.value].length > 1) {
+            document.getElementsByClassName('ph')[0].style.display = 'none'
             setIsTouched(true)
             setResult([])
             const querySnapshot = await getDocs(collection(database, 'usersData'))
@@ -92,6 +94,20 @@ const Search = () => {
                         })
                         : isTouched && <p>User with this username does not exist. Please try another</p>
                     }
+                    <p className={'ph'} style={{textAlign: 'center'}}>Here are some placeholder users: <br/>
+                        <Link
+                            to={'/user/03fe150d-dde3-4c2b-8b06-edc5b07ef6d1'}
+                            className={'search__example'}
+                        > bloom
+                        </Link>,
+                        <Link to={'/user/LiqNpcTNI7TEj3lK1V0PNfPEwXj2'} className={'search__example'}> bloon1k</Link>,
+                        <Link to={'/user/labUJePrePQTcmeDKgdZprZhiWp2'} className={'search__example'}> bloonik</Link>,
+                        <Link
+                            to={'/user/e1f9c0ce-db8b-4a9d-bbac-a1dcca40dfc6'}
+                            className={'search__example'}> bunny
+                        </Link>
+                        <br/>
+                        You can follow, see their posts or message them</p>
                 </div>
             </div>
 

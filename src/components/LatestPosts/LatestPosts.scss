@@ -1,6 +1,11 @@
 @use '../../styles/colors';
 @import '../../styles/mixins';
 
-.posts {
+.latest-posts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1% 10% 20% 10%;
+  gap: 2em;
   color: colors.$font;
 }

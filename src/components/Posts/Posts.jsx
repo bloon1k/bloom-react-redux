@@ -28,12 +28,14 @@ const Posts = ({postList}) => {
                     </section>
                 })
             }
-            {!postList.length &&
+            {!postList.length && userId === 'me' &&
                 <p>You have no posts at the moment, create some using <Link to={'/create-post'} style={{
                     textDecoration: 'underline',
                     color: '#b64141'
                 }}>Create post form</Link>
-                </p>}
+                </p>
+            }
+            {userId !== 'me' && !postList.length && <p>User has no posts</p>}
         </section>
     )
 }
