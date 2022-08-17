@@ -5,38 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1f94413-57c8-4c9b-b7ad-72671f09b813" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Assets/sea-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/sea.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/User.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/User.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/follow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/unfollow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LatestPostItem/LatestPostItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LatestPostItem/LatestPostItem.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Messages/Messages.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/getUserDialoguesByID.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateUserName/CreateUserName.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateUserName/CreateUserName.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LatestPosts/LatestPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LatestPosts/LatestPosts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LatestPosts/LatestPosts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LatestPosts/LatestPosts.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Messages/Messages.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Posts/Posts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Posts.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Search/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/Search.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Search/Search.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/Search.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SeePost/SeePost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeePost/SeePost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SeePost/SeePost.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeePost/SeePost.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/app/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/features/changeHandlerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/changeHandlerSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/features/errorsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/errorsSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/features/followersDataSlice.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/features/postsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/postsSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Routes/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Routes/Routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/getUserDataByID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/getUserDataByID.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/User.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +84,8 @@
       <workItem from="1660296916056" duration="5515000" />
       <workItem from="1660382593233" duration="1690000" />
       <workItem from="1660391227550" duration="12349000" />
-      <workItem from="1660475737497" duration="15484000" />
+      <workItem from="1660475737497" duration="29826000" />
+      <workItem from="1660667716933" duration="2183000" />
     </task>
     <servers />
   </component>

@@ -6,13 +6,14 @@ import Header from './components/Header/Header'
 import ApplicationWrapper from './components/ApplicationWrapper/ApplicationWrapper'
 import Footer from './components/Footer/Footer'
 
-// searchedUser buttons should work
 // searchedUser when no avatar - should show placeholder
 
-// followers redux state should not exist, all followers data needs to be requested from db
+// adaptive and UI for all new sections
+// add back button in User component
 
-// adaptive for all new sections
-// when visiting user without posts - need to remove 'create post' paragraph
+// msg mechanic
+// message button in User should be protected with auth
+// searchedUser message should work
 
 // update followers/following list UI
 // display post owner on seePost

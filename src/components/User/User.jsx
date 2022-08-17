@@ -49,10 +49,14 @@ const User = () => {
                     followers: data.followers,
                     following: data.following
                 })
-                setIsFollowing(checkIsFollowing().includes(true))
             })
         // eslint-disable-next-line
-    }, [database, userId, isFollowing])
+    }, [userId, isFollowing])
+
+    useEffect(() => {
+        setIsFollowing(checkIsFollowing().includes(true))
+        // eslint-disable-next-line
+    }, [myFollowersData])
 
     const isAuth = useSelector(state => state.auth.isAuth)
     const [displayedUser, setDisplayedUser] = useState({})

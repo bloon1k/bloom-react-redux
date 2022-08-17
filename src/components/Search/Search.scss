@@ -89,4 +89,14 @@
       //background: white;
     }
   }
+
+  &__example {
+    text-decoration: none;
+    color: colors.$red;
+    transition: .3s all;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

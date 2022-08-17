@@ -120,7 +120,7 @@ const Profile = () => {
     }
 
     return (
-        <section className="profile" style={{paddingLeft: isAuth ? '1em' : ''}}>
+        <section className="profile" style={{paddingLeft: isAuth ? (window.innerWidth <= 768 ? '' : '1em') : ''}}>
 
             <section className="profile__controls">
 
