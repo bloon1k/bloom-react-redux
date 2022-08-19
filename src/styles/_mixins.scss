@@ -28,3 +28,21 @@
   padding-left: .3em;
   font-size: 1.3em;
 }
+
+@mixin arrow {
+  background: rgba(0, 0, 0, 0);
+  color: colors.$font;
+  border-radius: .7em;
+  font-size: 1.1em;
+  padding: .7em;
+  transition: .3s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid colors.$secondary;
+
+  &:hover {
+    border: 2px solid colors.$font;
+    color: white;
+  }
+}
