@@ -5,7 +5,7 @@ import './SearchedUser.scss'
 import {useSelector} from 'react-redux'
 // Libraries
 import {v4 as uuid} from 'uuid'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import follow from '../../utils/follow'
 import unfollow from '../../utils/unfollow'
 import getFollowersDataByID from '../../utils/getFollowersDataByID'
@@ -25,6 +25,9 @@ const SearchedUser = ({user}) => {
         followers: [],
         following: []
     })
+
+    const navigate = useNavigate()
+    const isAuth = useSelector(state => state.auth.isAuth)
 
     const [isFollowing, setIsFollowing] = useState(checkIsFollowing().includes(true))
 
@@ -63,7 +66,15 @@ const SearchedUser = ({user}) => {
                 <p className={'searched-user__username'}>{user.userName}</p>
             </div>
             {user.userID !== myUserId && <div className="searched-user__buttons">
-                <button className="searched-user__message" onClick={e => e.preventDefault()}>
+                <button className="searched-user__message"
+                        onClick={async e => {
+                            e.preventDefault()
+                            if (isAuth) {
+                                navigate(`/dialogue/${user.userID}`)
+                            } else {
+                                navigate('/')
+                            }
+                        }}>
                     Message
                 </button>
 

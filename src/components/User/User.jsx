@@ -100,7 +100,14 @@ const User = () => {
                     </div>
 
                     {userId !== myUserId && <div className="user__buttons">
-                        <button className={'user__message'}>
+                        <button className={'user__message'}
+                                onClick={async () => {
+                                    if (isAuth) {
+                                        navigate(`/dialogue/${userId}`)
+                                    } else {
+                                        navigate('/')
+                                    }
+                                }}>
                             Message
                         </button>
                         {isFollowing

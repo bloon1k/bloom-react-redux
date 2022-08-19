@@ -1,7 +1,7 @@
 import React from 'react'
 // Styles
 import './SeePost.scss'
-import {useNavigate, useParams} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 // Redux
 import {useDispatch, useSelector} from 'react-redux'
 import {setPosts} from '../../redux/features/postsSlice'
@@ -12,6 +12,7 @@ import {doc, updateDoc} from 'firebase/firestore'
 // Assets
 import trash from '../../Assets/trash.png'
 import trashDark from '../../Assets/trash-dark.png'
+import guest from '../../Assets/guest.png'
 
 
 const SeePost = () => {
@@ -83,6 +84,14 @@ const SeePost = () => {
 
             </div>
             <div className="see-post__card">
+                {/*<Link to={`/user/${post.postedBy}`} className="latest-post-item__owner">*/}
+                {/*    <img*/}
+                {/*        src={displayedUserData.photoURL ? displayedUserData.photoURL : guest}*/}
+                {/*        alt="user avatar"*/}
+                {/*        className={'latest-post-item__avatar'}*/}
+                {/*    />*/}
+                {/*    <p>{displayedUserData.userName}</p>*/}
+                {/*</Link>*/}
                 <img src={currentPostWatched.postImageURL} alt="post img" className={'see-post__image'}/>
                 <div className="see-post__details">
                     <p className={'see-post__description'}>{currentPostWatched.postDescription}</p>

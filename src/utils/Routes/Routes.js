@@ -7,7 +7,7 @@ import Profile from '../../components/Profile/Profile'
 import NoPage from '../../components/NoPage/NoPage'
 import SignIn from '../../components/SignIn/SignIn'
 import SignUpForm from '../../components/SignUpForm/SignUpForm'
-import Messages from '../../components/Messages/Messages'
+import MessagesList from '../../components/MessagesList/MessagesList'
 import LatestPosts from '../../components/LatestPosts/LatestPosts'
 import Search from '../../components/Search/Search'
 import RequireAuth from '../RequireAuth'
@@ -17,6 +17,7 @@ import FollowingList from '../../components/FollowingList/FollowingList'
 import CreatePost from '../../components/CreatePost/CreatePost'
 import SeePost from '../../components/SeePost/SeePost'
 import User from '../../components/User/User'
+import Dialogue from '../../components/Dialogue/Dialogue'
 
 const Routes = () => {
     return (
@@ -54,11 +55,18 @@ const Routes = () => {
                     <SeePost/>
                 </RequireAuth>
             }/>
+
             <Route path={'messages'} element={
                 <RequireAuth>
-                    <Messages/>
+                    <MessagesList/>
                 </RequireAuth>
             }/>
+            <Route path={'dialogue/:userId'} element={
+                <RequireAuth>
+                    <Dialogue/>
+                </RequireAuth>
+            }/>
+
             <Route path={'create-post'} element={
                 <RequireAuth>
                     <CreatePost/>

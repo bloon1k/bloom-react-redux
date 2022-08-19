@@ -6,12 +6,15 @@ import Header from './components/Header/Header'
 import ApplicationWrapper from './components/ApplicationWrapper/ApplicationWrapper'
 import Footer from './components/Footer/Footer'
 
-// searchedUser when no avatar - should show placeholder
+// need setInterval to get updates when new message comes to you
+// interval in message list is reauired too
+// send message by enter click
 
 // adaptive and UI for all new sections
 // add back button in User component
 
-// msg mechanic
+// if no current dialogue and dialogue list is empty - need placeholder
+
 // message button in User should be protected with auth
 // searchedUser message should work
 

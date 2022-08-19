@@ -27,6 +27,7 @@
 
   &__image {
     border-radius: 50%;
+    background: colors.$font;
     width: 100px;
     aspect-ratio: 1 / 1;
   }

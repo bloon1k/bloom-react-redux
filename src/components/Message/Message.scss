@@ -1,0 +1,28 @@
+@use '../../styles/colors';
+@import '../../styles/mixins';
+
+.message {
+  color: colors.$font;
+  min-width: 10%;
+  max-width: 80%;
+  border: 1px solid colors.$font;
+  border-radius: .7em;
+  padding: 2%;
+
+  &__left {
+    align-self: flex-start;
+  }
+
+  &__right {
+    align-self: flex-end;
+  }
+
+  &__text {
+    font-size: 1.1em;
+  }
+
+  &__date {
+    opacity: .7;
+    font-size: .8em;
+  }
+}
