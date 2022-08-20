@@ -64,9 +64,33 @@ const Dialogue = () => {
                 }, 10)
             })
 
+        let beforeMessagesCount = dialogueData.messages.length
+        let afterMessagesCount = 0
+
+        let updatesInterval = setInterval(() => {
+            console.log('request')
+            getUserDialoguesByID(database, myUserId)
+                .then(dialoguesList => {
+                    dialoguesList.forEach(dialogue => {
+                        if (dialogue.between.includes(userId)) {
+                            setDialogueData(dialogue)
+                            afterMessagesCount = dialogue.messages.length
+                        }
+                    })
+                    setTimeout(() => {
+                        let elem = document.getElementsByClassName('dialogue__messages')[0]
+                        if (beforeMessagesCount < afterMessagesCount) {
+                            beforeMessagesCount = afterMessagesCount
+                            elem.scrollTop = elem.scrollHeight
+                        }
+                    }, 10)
+                })
+        }, 5000)
         return () => {
             document.removeEventListener('keypress', check)
+            clearInterval(updatesInterval)
         }
+
         // eslint-disable-next-line
     }, [userId])
 
@@ -134,9 +158,13 @@ const Dialogue = () => {
             </Link>
 
             <div className="dialogue__messages">
-                {dialogueData.messages.length !== 0 && dialogueData.messages.map(message => {
-                    return <Message message={{...message, betweenId: userId}} key={uuid()}/>
-                })}
+                {dialogueData.messages.length !== 0
+                    ? dialogueData.messages.map(message => {
+                        return <Message message={{...message, betweenId: userId}} key={uuid()}/>
+                    })
+                    : <p style={{width: '100%', textAlign: 'center', marginTop: '1em', fontSize: '1.3em'}}>
+                        There are no messages here yet...
+                    </p>}
             </div>
 
             <div className="dialogue__controls">

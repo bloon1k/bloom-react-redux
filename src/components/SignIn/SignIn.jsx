@@ -68,13 +68,18 @@ const SignIn = () => {
                             .then(postsData => {
                                 dispatch(setPosts(postsData))
                                 dispatch(setUserID(userData.userID))
+                                localStorage.setItem('userID', userData.userID)
                                 dispatch(setUserName(userData.userName))
+                                localStorage.setItem('userName', userData.userName)
                                 // currentUserName is required to change userName in Profile page
                                 dispatch(setCurrentUserNameValue(userData.userName))
                                 dispatch(setEmail(data.email))
+                                localStorage.setItem('email', data.email)
                                 dispatch(setPassword(data.password))
                                 dispatch(setPhoto(userData.photoURL))
+                                localStorage.setItem('photoURL', userData.photoURL)
                                 dispatch(login())
+                                localStorage.setItem('isAuth', 'true')
                                 reset()
                             })
                     })
@@ -98,28 +103,35 @@ const SignIn = () => {
                         .then(async userData => {
                             const newUserID = uuid()
                             dispatch(setEmail(user.email))
+                            localStorage.setItem('email', user.email)
                             if (userData) {
                                 // If user exists already
                                 getPostsDataByID(database, userData.userID)
                                     .then(postsData => {
                                         dispatch(setPosts(postsData))
                                         dispatch(setUserID(userData.userID))
+                                        localStorage.setItem('userID', userData.userID)
                                         dispatch(setUserName(userData.userName))
+                                        localStorage.setItem('userName', userData.userName)
                                         // currentUserName is required to change userName in Profile page
                                         dispatch(setCurrentUserNameValue(userData.userName))
                                         if (userData.photoURL) {
                                             // If user has the uploaded avatar - we get it and remember +
                                             // display locally
                                             dispatch(setPhoto(userData.photoURL))
+                                            localStorage.setItem('photoURL', userData.photoURL)
                                         } else {
                                             // If user has no saved avatars - use placeholder image
                                             dispatch(setPhoto('https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47'))
+                                            localStorage.setItem('photoURL', 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47')
                                         }
                                         dispatch(login())
+                                        localStorage.setItem('isAuth', 'true')
                                     })
                             } else {
                                 // If user never existed
                                 dispatch(setUserID(newUserID))
+                                localStorage.setItem('userID', newUserID)
                                 dispatch(startUserNameChange())
                                 // All data will be sent to firestore once user creates userName
                                 navigate('/create-username')
@@ -143,28 +155,35 @@ const SignIn = () => {
                 .then(async userData => {
                     const newUserID = uuid()
                     dispatch(setEmail(user.email))
+                    localStorage.setItem('email', user.email)
                     if (userData) {
                         // If user exists already
                         getPostsDataByID(database, userData.userID)
                             .then(postsData => {
                                 dispatch(setPosts(postsData))
                                 dispatch(setUserID(userData.userID))
+                                localStorage.setItem('userID', userData.userID)
                                 dispatch(setUserName(userData.userName))
+                                localStorage.setItem('userName', userData.userName)
                                 // currentUserName is required to change userName in Profile page
                                 dispatch(setCurrentUserNameValue(userData.userName))
                                 if (userData.photoURL) {
                                     // If user has the uploaded avatar - we get it and remember + display
                                     // locally
                                     dispatch(setPhoto(userData.photoURL))
+                                    localStorage.setItem('photoURL', userData.photoURL)
                                 } else {
                                     // If user has no saved avatars - use placeholder image
                                     dispatch(setPhoto('https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47'))
+                                    localStorage.setItem('photoURL', 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47')
                                 }
                                 dispatch(login())
+                                localStorage.setItem('isAuth', 'true')
                             })
                     } else {
                         // If user never existed
                         dispatch(setUserID(newUserID))
+                        localStorage.setItem('userID', newUserID)
                         dispatch(startUserNameChange())
                         // All data will be sent to firestore once user creates userName
                         navigate('/create-username')

@@ -6,6 +6,7 @@ import guestPicture from '../../Assets/guest.png'
 // Libraries
 import {v4 as uuid} from 'uuid'
 import {Link} from 'react-router-dom'
+import getPostsDataByID from '../../utils/getPostsDataByID'
 // Redux
 import {useSelector, useDispatch} from 'react-redux'
 import {setPhoto, setUserName} from '../../redux/features/userDataSlice'
@@ -38,11 +39,13 @@ const Profile = () => {
                     following: data.following
                 })
             })
+        getPostsDataByID(database, user.userID)
+            .then(postsData => setPostList(postsData))
         // eslint-disable-next-line
     }, [])
 
     const isAuth = useSelector(state => state.auth.isAuth)
-    const postList = useSelector(state => state.posts.postList)
+    const [postList, setPostList] = useState(useSelector(state => state.posts.postList))
     const storage = getStorage()
     const database = useSelector(state => state.firebase.database)
     const isUserNameChanged = useSelector(state => state.changeHandler.isUserNameChanged)

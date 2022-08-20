@@ -15,6 +15,12 @@
     padding: 3%;
   }
 
+  &__back {
+    @include button;
+    width: 10%;
+    height: 40px;
+  }
+
   // Upper-left
   &__image {
     border: 2px solid colors.$secondary;

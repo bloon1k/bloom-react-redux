@@ -5,26 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1f94413-57c8-4c9b-b7ad-72671f09b813" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Assets/back-arrow-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Assets/back-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Dialogue/Dialogue.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Dialogue/Dialogue.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Message/Message.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Message/Message.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MessagesList/MessagesList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MessagesList/MessagesList.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Messages/Messages.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Messages/Messages.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateUserName/CreateUserName.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateUserName/CreateUserName.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dialogue/Dialogue.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogue/Dialogue.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MessagesList/MessagesList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MessagesList/MessagesList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SeePost/SeePost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeePost/SeePost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SeePost/SeePost.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeePost/SeePost.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/User.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/features/errorsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/errorsSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Routes/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Routes/Routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/getUserDialoguesByID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/getUserDialoguesByID.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/User.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/User.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +83,7 @@
       <workItem from="1660391227550" duration="12349000" />
       <workItem from="1660475737497" duration="29826000" />
       <workItem from="1660667716933" duration="2183000" />
-      <workItem from="1660739855031" duration="31393000" />
+      <workItem from="1660739855031" duration="41420000" />
     </task>
     <servers />
   </component>

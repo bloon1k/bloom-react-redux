@@ -33,9 +33,13 @@ const FollowersList = () => {
 
     return <section className={'followers-list'}>
         <button onClick={() => navigate(-1)} className={'followers-list__back'}>Go back</button>
-        {followersList.length !== 0 && followersList.map(follower => {
-            return <SearchedUser user={follower} key={uuid()}/>
-        })}
+        {followersList.length !== 0
+            ? followersList.map(follower => {
+                return <SearchedUser user={follower} key={uuid()}/>
+            })
+            : <p style={{width: '100%', textAlign: 'center', marginTop: '1em', fontSize: '1.3em'}}>
+                This user has no followers yet...
+            </p>}
     </section>
 }
 
