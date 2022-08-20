@@ -48,6 +48,46 @@ const MessagesList = () => {
                         })
                 })
             })
+        let updatesInterval = setInterval(() => {
+            console.log('req upd')
+            getUserDialoguesByID(database, myUserId)
+                .then(dialoguesList => {
+                    const filteredList = []
+                    dialoguesList.forEach(dialogue => {
+                        if (dialogue.messages.length !== 0) {
+                            filteredList.push(dialogue)
+                        }
+                    })
+                    const newList = filteredList.map(dialogue => {
+                        if (dialogue.between[0] === myUserId) {
+                            return {...dialogue, between: dialogue.between[1]}
+                        } else {
+                            return {...dialogue, between: dialogue.between[0]}
+                        }
+                    })
+                    newList.sort((a, b) => {
+                        return (a.messages[a.messages.length - 1].sentAt.seconds < b.messages[b.messages.length - 1].sentAt.seconds) - (a.messages[a.messages.length - 1].sentAt.seconds > b.messages[b.messages.length - 1].sentAt.seconds)
+                    })
+                    let updatedList = []
+                    for (let i = 0; i < newList.length; i++) {
+                        getUserDataByID(database, newList[i].between)
+                            .then(betweenData => {
+                                updatedList.push({
+                                    ...betweenData,
+                                    dialogueId: newList[i].dialogueId,
+                                    ...newList[i],
+                                })
+                                if (i === newList.length - 1) {
+                                    setMessagesList(updatedList)
+                                }
+                            })
+                    }
+                })
+        }, 5000)
+
+        return () => {
+            clearInterval(updatesInterval)
+        }
         // eslint-disable-next-line
     }, [myUserId])
 
@@ -68,23 +108,41 @@ const MessagesList = () => {
 
     return (
         <section className="messages-list">
-            {messagesList.length !== 0 && messagesList.map(dialogue => {
-                if (dialogue.messages.length !== 0) {
-                    return <Link to={`/dialogue/${dialogue.userID}`} className={'messages-list__item'} key={uuid()}>
-                        <img src={dialogue.photoURL ? dialogue.photoURL : guest} className={'messages-list__image'}
-                             alt="user avatar"/>
-                        <div className="messages-list__text">
-                            <p>{dialogue.userName}</p>
-                            <span>{dialogue.messages[dialogue.messages.length - 1].text}</span>
-                            <span style={{opacity: '.6', fontSize: '.9em'}}>
+            {messagesList.length !== 0
+                ? messagesList.map(dialogue => {
+                    if (dialogue.messages.length !== 0) {
+                        return <Link to={`/dialogue/${dialogue.userID}`} className={'messages-list__item'} key={uuid()}>
+                            <img src={dialogue.photoURL ? dialogue.photoURL : guest} className={'messages-list__image'}
+                                 alt="user avatar"/>
+                            <div className="messages-list__text">
+                                <p>{dialogue.userName}</p>
+                                <span>{dialogue.messages[dialogue.messages.length - 1].text}</span>
+                                <span style={{opacity: '.6', fontSize: '.9em'}}>
                             Sent {calcTimeDifference(dialogue.messages[dialogue.messages.length - 1].sentAt.seconds)} ago
                         </span>
-                        </div>
-                    </Link>
-                } else {
-                    return <p>ss</p>
-                }
-            })}
+                            </div>
+                        </Link>
+                    } else {
+                        return <p>ss</p>
+                    }
+                })
+                : <p style={{width: '100%', textAlign: 'center', marginTop: '1em', fontSize: '1.3em'}}>
+                    You have no dialogues yet...
+                </p>}
+            <p className={'ph'} style={{textAlign: 'center', marginTop: '1em'}}>Here are some placeholder users: <br/>
+                <Link
+                    to={'/user/03fe150d-dde3-4c2b-8b06-edc5b07ef6d1'}
+                    className={'search__example'}
+                > bloom
+                </Link>,
+                <Link to={'/user/LiqNpcTNI7TEj3lK1V0PNfPEwXj2'} className={'search__example'}> bloon1k</Link>,
+                <Link to={'/user/labUJePrePQTcmeDKgdZprZhiWp2'} className={'search__example'}> bloonik</Link>,
+                <Link
+                    to={'/user/e1f9c0ce-db8b-4a9d-bbac-a1dcca40dfc6'}
+                    className={'search__example'}> bunny
+                </Link>
+                <br/>
+                You can follow, see their posts or message them</p>
         </section>
     )
 }

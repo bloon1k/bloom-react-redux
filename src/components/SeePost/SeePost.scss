@@ -38,6 +38,26 @@
     width: 100%;
   }
 
+  &__owner {
+    text-decoration: none;
+    color: colors.$font;
+    display: flex;
+    align-items: center;
+    gap: .7em;
+    padding: 2%;
+
+    & > p {
+      font-weight: 700;
+      font-size: 1.3em;
+    }
+  }
+
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
   &__image {
     width: 100%;
     aspect-ratio: 1 / 1;

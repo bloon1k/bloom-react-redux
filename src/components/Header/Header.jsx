@@ -1,12 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 // styles
 import './Header.scss'
 // Utils
 import changeTheme from '../../utils/changeTheme'
 // Redux
 import {changed} from '../../redux/features/themeSlice'
-import {logout} from '../../redux/features/authSlice'
-import {clearUserData} from '../../redux/features/userDataSlice'
+import {login, logout} from '../../redux/features/authSlice'
+import {clearUserData, setEmail, setPhoto, setUserID, setUserName} from '../../redux/features/userDataSlice'
 import {clearErrors} from '../../redux/features/errorsSlice'
 import {clearChangeHandler} from '../../redux/features/changeHandlerSlice'
 import {useDispatch, useSelector} from 'react-redux'
@@ -32,9 +32,30 @@ const Header = () => {
     })
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        // If no theme in storage - set dark by default
+        localStorage.getItem('theme') === null && localStorage.setItem('theme', 'dark')
+        // If user saved light theme - set it once page is loaded
+        if (localStorage.getItem('theme') !== 'dark') {
+            let circle = document.getElementsByClassName('header__circle')[0]
+            circle.style.left = '58%'
+            changeTheme()
+            dispatch(changed())
+        }
+        if (localStorage.getItem('isAuth') === 'true') {
+            dispatch(setUserID(localStorage.getItem('userID')))
+            dispatch(setUserName(localStorage.getItem('userName')))
+            dispatch(setEmail(localStorage.getItem('email')))
+            dispatch(setPhoto(localStorage.getItem('photoURL')))
+            dispatch(login())
+        }
+        // eslint-disable-next-line
+    }, [])
+
 
     function handleThemeClick(e) {
         e.stopPropagation()
+        currentTheme === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark')
         let circle = document.getElementsByClassName('header__circle')[0]
         circle.style.left === '58%' ? circle.style.left = '5%' : circle.style.left = '58%'
         changeTheme()
@@ -47,6 +68,12 @@ const Header = () => {
         dispatch(clearChangeHandler())
         dispatch(clearPosts())
         dispatch(logout())
+        // remember theme
+        let theme = localStorage.getItem('theme')
+        localStorage.clear()
+        // still remember theme after storage is cleared
+        localStorage.setItem('theme', theme)
+        localStorage.setItem('isAuth', 'false')
     }
 
     return (

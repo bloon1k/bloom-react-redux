@@ -47,7 +47,7 @@ const CreateUserName = () => {
                         userName: currentUserNameValue,
                         email: currentUser.email,
                         password: '',
-                        photoURL: ''
+                        photoURL: 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47'
                     })
                         .then(() => {
                             setDoc(doc(database, 'followers', currentUser.userID), {
@@ -61,9 +61,12 @@ const CreateUserName = () => {
                                         .then(() => {
                                             dispatch(setPosts([]))
                                             dispatch(setUserName(currentUserNameValue))
+                                            localStorage.setItem('userName', currentUserNameValue)
                                             dispatch(setCurrentUserNameValue())
                                             dispatch(stopUserNameChange())
                                             dispatch(login())
+                                            localStorage.setItem('isAuth', 'true')
+                                            localStorage.setItem('photoURL', 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47')
                                         })
                                 })
                         })

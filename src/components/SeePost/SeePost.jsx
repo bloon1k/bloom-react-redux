@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 // Styles
 import './SeePost.scss'
 import {Link, useNavigate, useParams} from 'react-router-dom'
@@ -13,6 +13,7 @@ import {doc, updateDoc} from 'firebase/firestore'
 import trash from '../../Assets/trash.png'
 import trashDark from '../../Assets/trash-dark.png'
 import guest from '../../Assets/guest.png'
+import getUserDataByID from '../../utils/getUserDataByID'
 
 
 const SeePost = () => {
@@ -26,6 +27,17 @@ const SeePost = () => {
     const database = useSelector(state => state.firebase.database)
     const storage = getStorage()
     const dispatch = useDispatch()
+    const [displayedUserData, setDisplayedUserData] = useState({})
+
+    useEffect(() => {
+        if (userId !== 'me') {
+            getUserDataByID(database, userId)
+                .then(userData => setDisplayedUserData(userData))
+        } else {
+            setDisplayedUserData(currentUserData)
+        }
+        // eslint-disable-next-line
+    }, [])
 
     function handlePostDelete() {
         document.getElementById('see-post__delete-popup').style.display = 'none'
@@ -84,14 +96,14 @@ const SeePost = () => {
 
             </div>
             <div className="see-post__card">
-                {/*<Link to={`/user/${post.postedBy}`} className="latest-post-item__owner">*/}
-                {/*    <img*/}
-                {/*        src={displayedUserData.photoURL ? displayedUserData.photoURL : guest}*/}
-                {/*        alt="user avatar"*/}
-                {/*        className={'latest-post-item__avatar'}*/}
-                {/*    />*/}
-                {/*    <p>{displayedUserData.userName}</p>*/}
-                {/*</Link>*/}
+                <Link to={userId !== 'me' ? `/user/${userId}` : '/'} className="see-post__owner">
+                    <img
+                        src={displayedUserData.photoURL ? displayedUserData.photoURL : guest}
+                        alt="user avatar"
+                        className={'see-post__avatar'}
+                    />
+                    <p>{displayedUserData.userName}</p>
+                </Link>
                 <img src={currentPostWatched.postImageURL} alt="post img" className={'see-post__image'}/>
                 <div className="see-post__details">
                     <p className={'see-post__description'}>{currentPostWatched.postDescription}</p>
