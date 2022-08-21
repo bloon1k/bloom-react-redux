@@ -67,7 +67,7 @@ const User = () => {
     return (
         <section className="user" style={{paddingLeft: isAuth ? '1em' : ''}}>
 
-            <button onClick={() => navigate(-1)} className={'user__back'}>Go back</button>
+            {isAuth && <button onClick={() => navigate(-1)} className={'user__back'}>Go back</button>}
 
             <section className="user__controls">
 

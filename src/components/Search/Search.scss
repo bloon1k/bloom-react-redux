@@ -9,7 +9,7 @@
   padding-top: 2em;
 
   &__content {
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,6 +97,45 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+// Adaptive media queries
+@media screen and (max-width: 768px) {
+  .search {
+
+    &__input {
+      width: 60%;
+    }
+
+    &__placeholder {
+      top: 30%;
+      left: 17%;
+      font-size: 1.2em;
+
+      &-move {
+        top: -20%;
+        left: 17%;
+        font-size: .8em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search {
+
+    &__placeholder {
+      top: 30%;
+      left: 14%;
+      font-size: 1em;
+
+      &-move {
+        top: -20%;
+        left: 14%;
+        font-size: .8em;
+      }
     }
   }
 }

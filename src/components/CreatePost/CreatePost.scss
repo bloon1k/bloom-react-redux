@@ -2,6 +2,7 @@
 @import '../../styles/mixins';
 
 .create-post {
+  padding-top: 1%;
   width: 100%;
   color: colors.$font;
   display: flex;
@@ -118,6 +119,34 @@
 
 #create-post__image-input {
   display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .create-post {
+
+    &__placeholder {
+      font-size: 1em;
+      top: 30%;
+
+      &-move {
+        top: -30%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .create-post {
+
+    &__placeholder {
+      font-size: .8em;
+      top: 40%;
+
+      &-move {
+        top: -30%;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 480px) {

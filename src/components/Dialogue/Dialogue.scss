@@ -8,7 +8,18 @@
   flex-direction: column;
   align-items: center;
   padding: 1% 5% 5% 5%;
-  gap: 2em;
+
+  &-wrapper {
+    //padding: 1%;
+    color: colors.$font;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .4em;
+    border-radius: .7em;
+    box-shadow: 0 0 5px colors.$font;
+  }
 
   // top
   &__header {
@@ -19,8 +30,8 @@
     text-decoration: none;
     color: colors.$font;
     padding: 1%;
-    border-radius: .7em;
-    box-shadow: 0 0 5px colors.$font;
+    border-radius: .7em .7em 0 0;
+    box-shadow: 0 0 3px colors.$font;
   }
 
   &__back {
@@ -47,7 +58,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: .5em;
     overflow: scroll;
     height: 60vh;
     padding: 0 10% .2em 10%;
@@ -60,8 +71,8 @@
     width: 100%;
     display: flex;
     gap: 1em;
-    border-radius: .7em;
-    box-shadow: 0 0 5px colors.$font;
+    border-radius: 0 0 .7em .7em;
+    box-shadow: 0 0 3px colors.$font;
   }
 
   &__input {
@@ -87,5 +98,65 @@
     top: 102%;
     left: 1%;
     font-size: .8em;
+  }
+}
+
+// width
+@media screen and (max-width: 480px) {
+  .dialogue {
+
+    &__image {
+      width: 45px;
+      height: 45px;
+    }
+
+    &__username {
+      font-size: 1.3em;
+    }
+
+    &__back {
+      height: 45px;
+    }
+
+    &__arrow {
+      height: 20px;
+    }
+  }
+}
+
+// height
+@media screen and (max-height: 1024px) {
+  .dialogue {
+
+    &__messages {
+      height: 55vh;
+    }
+  }
+}
+
+@media screen and (max-height: 768px) {
+  .dialogue {
+
+    &__messages {
+      height: 45vh;
+    }
+  }
+}
+
+@media screen and (max-height: 550px) {
+  .dialogue {
+
+    &__messages {
+      height: 35vh;
+    }
+  }
+}
+
+@media screen and (max-height: 458px) {
+  .dialogue {
+
+    &__messages {
+      height: 20vh;
+    }
   }
 }

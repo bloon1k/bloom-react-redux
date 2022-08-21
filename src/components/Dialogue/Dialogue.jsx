@@ -142,46 +142,49 @@ const Dialogue = () => {
     return (
         <div className={'dialogue'}>
 
-            <Link to={`/user/${userId}`} className="dialogue__header">
-                <button className={'dialogue__back'} onClick={(e) => {
-                    e.preventDefault()
-                    navigate(-1)
-                }}>
-                    {currentTheme === 'dark'
-                        ? <img src={backArrow} className={'dialogue__arrow'} alt="back arrow"/>
-                        : <img src={backArrowDark} className={'dialogue__arrow'} alt="back arrow"/>
-                    }
-                </button>
-                <img src={userData.photoURL ? userData.photoURL : guest} className={'dialogue__image'}
-                     alt="user avatar"/>
-                <p className={'dialogue__username'}>{userData.userName}</p>
-            </Link>
+            <div className="dialogue-wrapper">
+                <Link to={`/user/${userId}`} className="dialogue__header">
+                    <button className={'dialogue__back'} onClick={(e) => {
+                        e.preventDefault()
+                        navigate(-1)
+                    }}>
+                        {currentTheme === 'dark'
+                            ? <img src={backArrow} className={'dialogue__arrow'} alt="back arrow"/>
+                            : <img src={backArrowDark} className={'dialogue__arrow'} alt="back arrow"/>
+                        }
+                    </button>
+                    <img src={userData.photoURL ? userData.photoURL : guest} className={'dialogue__image'}
+                         alt="user avatar"/>
+                    <p className={'dialogue__username'}>{userData.userName}</p>
+                </Link>
 
-            <div className="dialogue__messages">
-                {dialogueData.messages.length !== 0
-                    ? dialogueData.messages.map(message => {
-                        return <Message message={{...message, betweenId: userId}} key={uuid()}/>
-                    })
-                    : <p style={{width: '100%', textAlign: 'center', marginTop: '1em', fontSize: '1.3em'}}>
-                        There are no messages here yet...
-                    </p>}
-            </div>
-
-            <div className="dialogue__controls">
-                <div className="dialogue__input-wrapper">
-                    <input
-                        type="text"
-                        className={'dialogue__input'}
-                        id={'dialogue__input'}
-                        placeholder={'Enter message...'}
-                        ref={inputRef}
-                    />
-                    {sendMessageError && <p className={'dialogue__error'}>{sendMessageError}</p>}
+                <div className="dialogue__messages">
+                    {dialogueData.messages.length !== 0
+                        ? dialogueData.messages.map(message => {
+                            return <Message message={{...message, betweenId: userId}} key={uuid()}/>
+                        })
+                        : <p style={{width: '100%', textAlign: 'center', marginTop: '1em', fontSize: '1.3em'}}>
+                            There are no messages here yet...
+                        </p>}
                 </div>
-                <button className={'dialogue__send'} onClick={sendMessage}>
-                    Send
-                </button>
+
+                <div className="dialogue__controls">
+                    <div className="dialogue__input-wrapper">
+                        <input
+                            type="text"
+                            className={'dialogue__input'}
+                            id={'dialogue__input'}
+                            placeholder={'Enter message...'}
+                            ref={inputRef}
+                        />
+                        {sendMessageError && <p className={'dialogue__error'}>{sendMessageError}</p>}
+                    </div>
+                    <button className={'dialogue__send'} onClick={sendMessage}>
+                        Send
+                    </button>
+                </div>
             </div>
+
 
         </div>
     )

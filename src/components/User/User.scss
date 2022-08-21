@@ -4,6 +4,7 @@
 .user {
   display: flex;
   flex-direction: column;
+  padding-top: 1%;
   width: 100%;
   color: colors.$font;
 
@@ -80,8 +81,18 @@
 }
 
 // Adaptive media queries
+@media screen and (max-width: 1200px) {
+  .user {
+
+    &__back {
+      width: 15%;
+      font-size: 1em;
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
-  .profile {
+  .user {
 
     &__image {
       max-width: 250px;
@@ -98,7 +109,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .profile {
+  .user {
 
     &__username {
       font-size: 2em;
@@ -120,11 +131,19 @@
         height: 200px;
       }
     }
+
+    &__back {
+      width: 20%;
+    }
   }
 }
 
 @media screen and (max-width: 480px) {
-  .profile {
+  .user {
+
+    &__back {
+      width: 25%;
+    }
 
     &__controls {
       flex-direction: column;

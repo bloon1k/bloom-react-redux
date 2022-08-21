@@ -111,6 +111,14 @@ const MessagesList = () => {
             {messagesList.length !== 0
                 ? messagesList.map(dialogue => {
                     if (dialogue.messages.length !== 0) {
+
+                        if ([...dialogue.messages[dialogue.messages.length - 1].text].length > 20) {
+                            let newText = [...dialogue.messages[dialogue.messages.length - 1].text]
+                            newText.length = 20
+                            let str = newText.join('')
+                            dialogue.messages[dialogue.messages.length - 1].text = `${str}.....`
+                        }
+
                         return <Link to={`/dialogue/${dialogue.userID}`} className={'messages-list__item'} key={uuid()}>
                             <img src={dialogue.photoURL ? dialogue.photoURL : guest} className={'messages-list__image'}
                                  alt="user avatar"/>
@@ -118,8 +126,8 @@ const MessagesList = () => {
                                 <p>{dialogue.userName}</p>
                                 <span>{dialogue.messages[dialogue.messages.length - 1].text}</span>
                                 <span style={{opacity: '.6', fontSize: '.9em'}}>
-                            Sent {calcTimeDifference(dialogue.messages[dialogue.messages.length - 1].sentAt.seconds)} ago
-                        </span>
+                                    Sent {calcTimeDifference(dialogue.messages[dialogue.messages.length - 1].sentAt.seconds)} ago
+                                </span>
                             </div>
                         </Link>
                     } else {

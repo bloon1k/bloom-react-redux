@@ -61,7 +61,9 @@ const LatestPosts = () => {
                         textDecoration: 'underline',
                         color: '#b64141'
                     }}>People Search</Link></p>}
-            <p style={{alignSelf: 'center', fontSize: '1.3em'}}>Follow more people to see more posts!</p>
+            <p style={{alignSelf: 'center', fontSize: '1.3em', textAlign: 'center', marginBottom: '2em'}}>Follow more
+                people to see more
+                posts!</p>
         </section>
     )
 }

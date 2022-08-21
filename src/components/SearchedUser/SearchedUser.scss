@@ -48,3 +48,43 @@
     height: 45px;
   }
 }
+
+// Adaptive media queries
+@media screen and (max-width: 768px) {
+  .searched-user {
+
+    &__image {
+      width: 75px;
+    }
+
+    &__username {
+      font-size: 1.4em;
+    }
+
+    &__message, &__follow {
+      height: 40px;
+      font-size: .9em;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .searched-user {
+
+    &__image {
+      width: 75px;
+    }
+
+    &__username {
+      font-size: 1.4em;
+    }
+
+    &__message {
+      display: none;
+    }
+
+    &__follow {
+      padding: 0 .5em;
+    }
+  }
+}
