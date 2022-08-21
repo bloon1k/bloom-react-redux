@@ -22,7 +22,7 @@ import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 import {doc, setDoc, collection, getDocs} from 'firebase/firestore'
 
 const schema = yup.object().shape({
-    userName: yup.string().min(4, 'At least 4 characters').max(35, 'No longer than 35 characters').required('Username' +
+    userName: yup.string().min(4, 'At least 4 characters').max(15, 'No longer than 15 characters').required('Username' +
         ' is required'),
     email: yup.string().email('Please enter a valid email').required('Email is required'),
     password: yup.string().min(6, 'At least 6 characters').max(35, 'Maximum 35 characters').required('Password is' +

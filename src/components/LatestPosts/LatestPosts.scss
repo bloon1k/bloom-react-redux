@@ -9,3 +9,9 @@
   gap: 2em;
   color: colors.$font;
 }
+
+@media screen and (max-width: 480px) {
+  .latest-posts {
+    gap: 1em;
+  }
+}

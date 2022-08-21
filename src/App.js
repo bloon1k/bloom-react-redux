@@ -6,7 +6,8 @@ import Header from './components/Header/Header'
 import ApplicationWrapper from './components/ApplicationWrapper/ApplicationWrapper'
 import Footer from './components/Footer/Footer'
 
-// adaptive and UI for all new sections
+
+// test logins and signups
 
 // success/errors popups and loaders for all async actions
 

@@ -3,7 +3,7 @@
 
 .see-post {
   width: 100%;
-  padding: 0 10%;
+  padding: 1% 10% 0 10%;
   color: colors.$font;
   display: flex;
   flex-direction: column;
@@ -147,16 +147,42 @@
   .see-post {
 
     &__date {
-      font-size: .8em;
+      font-size: .7em;
     }
 
     &__description {
-      font-size: 1em;
+      font-size: .8em;
     }
 
     &__back {
       width: 33%;
       font-size: 1em;
+    }
+
+    &__avatar {
+      width: 35px;
+      height: 35px;
+    }
+
+    &__owner {
+
+      & > p {
+        font-size: 1em;
+      }
+    }
+
+    &__delete {
+      height: 35px;
+
+      & > img {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    &__back {
+      height: 35px;
+      font-size: .8em;
     }
   }
 }

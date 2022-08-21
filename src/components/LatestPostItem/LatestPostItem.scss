@@ -47,3 +47,40 @@
     text-align: end;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .latest-post-item {
+
+    &__data {
+
+      & > p {
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .latest-post-item {
+
+    &__owner {
+      padding: 3%;
+
+      & > p {
+        font-size: 1em;
+      }
+    }
+
+    &__avatar {
+      width: 35px;
+      height: 35px;
+    }
+
+    &__data {
+
+      & > p {
+        font-size: .9em;
+      }
+    }
+  }
+}
