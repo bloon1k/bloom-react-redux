@@ -96,7 +96,7 @@ const Search = () => {
                     }
                     <p className={'ph'} style={{textAlign: 'center'}}>Here are some placeholder users: <br/>
                         <Link
-                            to={'/user/03fe150d-dde3-4c2b-8b06-edc5b07ef6d1'}
+                            to={'/user/31a031a5-ce21-4902-89a6-7c3ab6031aeb'}
                             className={'search__example'}
                         > bloom
                         </Link>,

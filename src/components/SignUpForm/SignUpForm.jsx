@@ -13,7 +13,7 @@ import horizontal from '../../Assets/horizontal.svg'
 import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../../redux/features/authSlice'
 import {setUserID, setEmail, setUserName, setPassword} from '../../redux/features/userDataSlice'
-import {setCurrentUserNameValue} from '../../redux/features/changeHandlerSlice'
+import {setCurrentUserNameValue, setIsLoading} from '../../redux/features/changeHandlerSlice'
 import {occurredSignUpError} from '../../redux/features/errorsSlice'
 import {setPosts} from '../../redux/features/postsSlice'
 // Firebase
@@ -61,6 +61,7 @@ const SignUpForm = () => {
                     }
                 })
                 if (!error) {
+                    dispatch(setIsLoading(true))
                     // Entered userName is unique, proceed with registration
                     createUserWithEmailAndPassword(auth, data.email, data.password)
                         .then((userCredential) => {
@@ -72,7 +73,7 @@ const SignUpForm = () => {
                                 userName: data.userName,
                                 email: data.email,
                                 password: data.password,
-                                photoURL: 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47'
+                                photoURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShA_I9i6FEd3JTXAl7tS4op0qHA_Z1I2XW3oouHSrQS5IRHYQN00HQy9n_pB7-BFpkExc&usqp=CAU'
                             })
                                 .then(() => {
                                     // Send data to DB (update followers collection)
@@ -92,13 +93,15 @@ const SignUpForm = () => {
                                                     localStorage.setItem('userName', data.userName)
                                                     // CurrentUserName is required to change userName in Profile page
                                                     dispatch(setCurrentUserNameValue(data.userName))
+                                                    localStorage.setItem('currentUserNameValue', data.userName)
                                                     dispatch(setEmail(data.email))
                                                     localStorage.setItem('email', data.email)
                                                     dispatch(setPassword(data.password))
-                                                    localStorage.setItem('photoURL', 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47')
+                                                    localStorage.setItem('photoURL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShA_I9i6FEd3JTXAl7tS4op0qHA_Z1I2XW3oouHSrQS5IRHYQN00HQy9n_pB7-BFpkExc&usqp=CAU')
                                                     // Auto-login after
                                                     dispatch(login())
                                                     localStorage.setItem('isAuth', 'true')
+                                                    dispatch(setIsLoading(false))
                                                     reset()
                                                 })
                                         })
@@ -107,11 +110,15 @@ const SignUpForm = () => {
                         .catch((error) => {
                             // Dispatched error will be displayed under the form
                             dispatch(occurredSignUpError(error.code))
+                            dispatch(setIsLoading(false))
                             reset()
                         })
                 }
             })
-            .catch(error => dispatch(occurredSignUpError(`Failed to check database, ${error.code}`)))
+            .catch(error => {
+                dispatch(occurredSignUpError(`Failed to check database, ${error.code}`))
+                dispatch(setIsLoading(false))
+            })
     }
 
     const isLoggedIn = useSelector(state => state.auth.isAuth)

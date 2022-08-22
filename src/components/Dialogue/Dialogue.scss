@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1% 5% 5% 5%;
+  padding: 1% 5% 10em 5%;
 
   &-wrapper {
     //padding: 1%;
@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .4em;
+    gap: .6em;
     border-radius: .7em;
     box-shadow: 0 0 5px colors.$font;
   }

@@ -29,7 +29,7 @@ import {
     setPhoto,
 } from '../../redux/features/userDataSlice'
 import {setPosts} from '../../redux/features/postsSlice'
-import {setCurrentUserNameValue, startUserNameChange} from '../../redux/features/changeHandlerSlice'
+import {setCurrentUserNameValue, setIsLoading, startUserNameChange} from '../../redux/features/changeHandlerSlice'
 import {occurredSignInError} from '../../redux/features/errorsSlice'
 // Assets
 import google from '../../Assets/google.svg'
@@ -58,6 +58,7 @@ const SignIn = () => {
     const navigate = useNavigate()
 
     function submitLoginForm(data) {
+        dispatch(setIsLoading(true))
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then(() => {
                 // Signed in
@@ -73,6 +74,7 @@ const SignIn = () => {
                                 localStorage.setItem('userName', userData.userName)
                                 // currentUserName is required to change userName in Profile page
                                 dispatch(setCurrentUserNameValue(userData.userName))
+                                localStorage.setItem('currentUserNameValue', userData.userName)
                                 dispatch(setEmail(data.email))
                                 localStorage.setItem('email', data.email)
                                 dispatch(setPassword(data.password))
@@ -81,19 +83,23 @@ const SignIn = () => {
                                 dispatch(login())
                                 localStorage.setItem('isAuth', 'true')
                                 reset()
+                                dispatch(setIsLoading(false))
                             })
                     })
             })
             .catch((error) => {
                 dispatch(occurredSignInError(error.code === 'auth/user-not-found' ? 'user not found' : 'incorrect password'))
+                dispatch(setIsLoading(false))
             })
     }
 
     function googleSignIn(e) {
         e.preventDefault()
         if (window.innerWidth <= 768) {
-            signInWithRedirect(auth, provider).then(() => 1)
+            dispatch(setIsLoading(true))
+            signInWithRedirect(auth, provider).then(() => dispatch(setIsLoading(false)))
         } else {
+            dispatch(setIsLoading(true))
             signInWithPopup(auth, provider)
                 .then((result) => {
                     // The signed-in user info.
@@ -115,6 +121,7 @@ const SignIn = () => {
                                         localStorage.setItem('userName', userData.userName)
                                         // currentUserName is required to change userName in Profile page
                                         dispatch(setCurrentUserNameValue(userData.userName))
+                                        localStorage.setItem('currentUserNameValue', userData.userName)
                                         if (userData.photoURL) {
                                             // If user has the uploaded avatar - we get it and remember +
                                             // display locally
@@ -122,17 +129,19 @@ const SignIn = () => {
                                             localStorage.setItem('photoURL', userData.photoURL)
                                         } else {
                                             // If user has no saved avatars - use placeholder image
-                                            dispatch(setPhoto('https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47'))
-                                            localStorage.setItem('photoURL', 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47')
+                                            dispatch(setPhoto('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShA_I9i6FEd3JTXAl7tS4op0qHA_Z1I2XW3oouHSrQS5IRHYQN00HQy9n_pB7-BFpkExc&usqp=CAU'))
+                                            localStorage.setItem('photoURL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShA_I9i6FEd3JTXAl7tS4op0qHA_Z1I2XW3oouHSrQS5IRHYQN00HQy9n_pB7-BFpkExc&usqp=CAU')
                                         }
                                         dispatch(login())
                                         localStorage.setItem('isAuth', 'true')
+                                        dispatch(setIsLoading(false))
                                     })
                             } else {
                                 // If user never existed
                                 dispatch(setUserID(newUserID))
                                 localStorage.setItem('userID', newUserID)
                                 dispatch(startUserNameChange())
+                                dispatch(setIsLoading(false))
                                 // All data will be sent to firestore once user creates userName
                                 navigate('/create-username')
                             }
@@ -141,6 +150,7 @@ const SignIn = () => {
                 .catch(error => {
                     const errorCode = error.code
                     dispatch(occurredSignInError(errorCode))
+                    dispatch(setIsLoading(false))
                 })
         }
     }
@@ -167,6 +177,7 @@ const SignIn = () => {
                                 localStorage.setItem('userName', userData.userName)
                                 // currentUserName is required to change userName in Profile page
                                 dispatch(setCurrentUserNameValue(userData.userName))
+                                localStorage.setItem('currentUserNameValue', userData.userName)
                                 if (userData.photoURL) {
                                     // If user has the uploaded avatar - we get it and remember + display
                                     // locally
@@ -174,8 +185,8 @@ const SignIn = () => {
                                     localStorage.setItem('photoURL', userData.photoURL)
                                 } else {
                                     // If user has no saved avatars - use placeholder image
-                                    dispatch(setPhoto('https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47'))
-                                    localStorage.setItem('photoURL', 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47')
+                                    dispatch(setPhoto('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShA_I9i6FEd3JTXAl7tS4op0qHA_Z1I2XW3oouHSrQS5IRHYQN00HQy9n_pB7-BFpkExc&usqp=CAU'))
+                                    localStorage.setItem('photoURL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShA_I9i6FEd3JTXAl7tS4op0qHA_Z1I2XW3oouHSrQS5IRHYQN00HQy9n_pB7-BFpkExc&usqp=CAU')
                                 }
                                 dispatch(login())
                                 localStorage.setItem('isAuth', 'true')

@@ -5,24 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1f94413-57c8-4c9b-b7ad-72671f09b813" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Assets/loader-dark.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Loader/Loader.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Loader/Loader.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreatePost/CreatePost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreatePost/CreatePost.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreatePost/CreatePost.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreatePost/CreatePost.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dialogue/Dialogue.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogue/Dialogue.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateUserName/CreateUserName.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateUserName/CreateUserName.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dialogue/Dialogue.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogue/Dialogue.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowersList/FollowersList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FollowingList/FollowingList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LatestPostItem/LatestPostItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LatestPostItem/LatestPostItem.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LatestPosts/LatestPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LatestPosts/LatestPosts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LatestPosts/LatestPosts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LatestPosts/LatestPosts.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Message/Message.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Message/Message.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MessagesList/MessagesList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MessagesList/MessagesList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MessagesList/MessagesList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MessagesList/MessagesList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Search/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/Search.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Search/Search.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/Search.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchedUser/SearchedUser.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SeePost/SeePost.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeePost/SeePost.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SeePost/SeePost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeePost/SeePost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpForm/SignUpForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/User.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User/User.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/User.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/features/changeHandlerSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/features/changeHandlerSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +92,7 @@
       <workItem from="1660391227550" duration="12349000" />
       <workItem from="1660475737497" duration="29826000" />
       <workItem from="1660667716933" duration="2183000" />
-      <workItem from="1660739855031" duration="48814000" />
+      <workItem from="1660739855031" duration="59964000" />
     </task>
     <servers />
   </component>
