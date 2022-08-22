@@ -7,8 +7,6 @@ import ApplicationWrapper from './components/ApplicationWrapper/ApplicationWrapp
 import Footer from './components/Footer/Footer'
 import Loader from './components/Loader/Loader'
 
-// mobile adaptive
-
 function App() {
     return (
         <div className="App">
