@@ -1,0 +1,27 @@
+@use '../../styles/colors';
+@import '../../styles/mixins';
+
+.loader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__gif {
+    width: 10%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .loader {
+
+    &__gif {
+      width: 20%;
+    }
+  }
+}

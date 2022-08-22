@@ -65,7 +65,7 @@ const User = () => {
     const {userName, photoURL} = displayedUser
 
     return (
-        <section className="user" style={{paddingLeft: isAuth ? '1em' : ''}}>
+        <section className="user" style={{paddingLeft: isAuth ? (window.innerWidth <= 768 ? '' : '1em') : ''}}>
 
             {isAuth && <button onClick={() => navigate(-1)} className={'user__back'}>Go back</button>}
 

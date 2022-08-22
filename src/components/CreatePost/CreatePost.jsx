@@ -10,6 +10,7 @@ import {v4 as uuid} from 'uuid'
 // Redux
 import {useDispatch, useSelector} from 'react-redux'
 import {occurredMissingImageError} from '../../redux/features/errorsSlice'
+import {setIsLoading} from '../../redux/features/changeHandlerSlice'
 // Firestore
 import {doc, setDoc} from 'firebase/firestore'
 // Firebase storage
@@ -39,6 +40,7 @@ const CreatePost = () => {
     function submitCreatePost() {
         dispatch(occurredMissingImageError(''))
         if (isFile) {
+            dispatch(setIsLoading(true))
             getUserPostsByID(database, currentUserID)
                 .then(previousPosts => {
                     const [image] = document.getElementById('create-post__image-input').files
@@ -70,6 +72,7 @@ const CreatePost = () => {
                                             .then(() => {
                                                 dispatch(addPost(newPost))
                                                 navigate('/')
+                                                dispatch(setIsLoading(false))
                                             })
                                     })
                                     .catch(error => console.log('Error while getting image url from Storage: ', error))

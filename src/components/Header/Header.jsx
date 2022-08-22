@@ -8,7 +8,7 @@ import {changed} from '../../redux/features/themeSlice'
 import {login, logout} from '../../redux/features/authSlice'
 import {clearUserData, setEmail, setPhoto, setUserID, setUserName} from '../../redux/features/userDataSlice'
 import {clearErrors} from '../../redux/features/errorsSlice'
-import {clearChangeHandler} from '../../redux/features/changeHandlerSlice'
+import {clearChangeHandler, setCurrentUserNameValue} from '../../redux/features/changeHandlerSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 // Assets
@@ -45,6 +45,7 @@ const Header = () => {
         if (localStorage.getItem('isAuth') === 'true') {
             dispatch(setUserID(localStorage.getItem('userID')))
             dispatch(setUserName(localStorage.getItem('userName')))
+            dispatch(setCurrentUserNameValue(localStorage.getItem('currentUserNameValue')))
             dispatch(setEmail(localStorage.getItem('email')))
             dispatch(setPhoto(localStorage.getItem('photoURL')))
             dispatch(login())

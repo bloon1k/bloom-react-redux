@@ -10,8 +10,14 @@ import getPostsDataByID from '../../utils/getPostsDataByID'
 // Redux
 import {useSelector, useDispatch} from 'react-redux'
 import {setPhoto, setUserName} from '../../redux/features/userDataSlice'
-import {startUserNameChange, stopUserNameChange, setCurrentUserNameValue} from '../../redux/features/changeHandlerSlice'
+import {
+    startUserNameChange,
+    stopUserNameChange,
+    setCurrentUserNameValue,
+    setIsLoading
+} from '../../redux/features/changeHandlerSlice'
 import {occurredChangeUserNameError} from '../../redux/features/errorsSlice'
+import {setPosts} from '../../redux/features/postsSlice'
 // Firestore
 import {collection, doc, getDocs, updateDoc} from 'firebase/firestore'
 import getFollowersDataByID from '../../utils/getFollowersDataByID'
@@ -40,7 +46,10 @@ const Profile = () => {
                 })
             })
         getPostsDataByID(database, user.userID)
-            .then(postsData => setPostList(postsData))
+            .then(postsData => {
+                setPostList(postsData)
+                dispatch(setPosts(postsData))
+            })
         // eslint-disable-next-line
     }, [])
 
@@ -55,6 +64,7 @@ const Profile = () => {
     function handleImageChange() {
         const [image] = document.getElementById('fileInp').files
         if (image) {
+            dispatch(setIsLoading(true))
             const imageID = uuid()
             const storageRef = ref(storage, `avatars/${imageID}`)
             const imageLocation = `gs://bloom-5c636.appspot.com/avatars/${imageID}`
@@ -73,6 +83,7 @@ const Profile = () => {
                                     // Delete old image from Storage
                                     user.photoURL && deleteObject(deletingImageRef)
                                         .then(() => {
+                                            dispatch(setIsLoading(false))
                                             console.log('Old image deleted successfully')
                                         })
                                         .catch((error) => console.log('Cannot delete old image: ', error))
@@ -90,12 +101,14 @@ const Profile = () => {
         // Clear changeUserName errors before proceed
         let error = false
         dispatch(occurredChangeUserNameError(''))
+        dispatch(setIsLoading(true))
         // Getting all docs from collection to check whether user with entered userName already exists
         getDocs(collection(database, 'usersData'))
             .then(async (result) => {
                 if (currentUserNameValue === user.userName) {
                     // Nothing to do if userName is same as before
                     dispatch(stopUserNameChange())
+                    dispatch(setIsLoading(false))
                 } else {
                     await result.forEach(doc => {
                         if (doc.data().userName === currentUserNameValue) {
@@ -114,6 +127,7 @@ const Profile = () => {
                                 // Remember new userName locally
                                 dispatch(setUserName(currentUserNameValue))
                                 dispatch(stopUserNameChange())
+                                dispatch(setIsLoading(false))
                             })
                             .catch(error => dispatch(occurredChangeUserNameError(`Error while updating userName: ${error.code}`)))
                     }

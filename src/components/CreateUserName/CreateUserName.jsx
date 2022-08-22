@@ -6,7 +6,7 @@ import {Navigate} from 'react-router-dom'
 // Redux
 import {useSelector, useDispatch} from 'react-redux'
 import {setUserName} from '../../redux/features/userDataSlice'
-import {setCurrentUserNameValue, stopUserNameChange} from '../../redux/features/changeHandlerSlice'
+import {setCurrentUserNameValue, setIsLoading, stopUserNameChange} from '../../redux/features/changeHandlerSlice'
 import {login} from '../../redux/features/authSlice'
 import {occurredSignUpError} from '../../redux/features/errorsSlice'
 // Firebase
@@ -41,13 +41,14 @@ const CreateUserName = () => {
                     }
                 })
                 if (!error && [...currentUserNameValue].length > 1) {
+                    dispatch(setIsLoading(true))
                     // Send new user data to firestore
                     setDoc(doc(database, 'usersData', currentUser.userID), {
                         userID: currentUser.userID,
                         userName: currentUserNameValue,
                         email: currentUser.email,
                         password: '',
-                        photoURL: 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47'
+                        photoURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShA_I9i6FEd3JTXAl7tS4op0qHA_Z1I2XW3oouHSrQS5IRHYQN00HQy9n_pB7-BFpkExc&usqp=CAU'
                     })
                         .then(() => {
                             setDoc(doc(database, 'followers', currentUser.userID), {
@@ -62,19 +63,25 @@ const CreateUserName = () => {
                                             dispatch(setPosts([]))
                                             dispatch(setUserName(currentUserNameValue))
                                             localStorage.setItem('userName', currentUserNameValue)
-                                            dispatch(setCurrentUserNameValue())
+                                            dispatch(setCurrentUserNameValue(currentUserNameValue))
+                                            localStorage.setItem('currentUserNameValue', currentUserNameValue)
                                             dispatch(stopUserNameChange())
                                             dispatch(login())
                                             localStorage.setItem('isAuth', 'true')
-                                            localStorage.setItem('photoURL', 'https://firebasestorage.googleapis.com/v0/b/bloom-5c636.appspot.com/o/avatars%2Fc60362d7-bbd4-41c9-877c-c7d9bdfdf089?alt=media&token=2c50e433-8b15-47c0-8f8b-e339ca13aa47')
+                                            localStorage.setItem('photoURL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShA_I9i6FEd3JTXAl7tS4op0qHA_Z1I2XW3oouHSrQS5IRHYQN00HQy9n_pB7-BFpkExc&usqp=CAU')
+                                            dispatch(setIsLoading(false))
                                         })
                                 })
                         })
                 } else {
                     dispatch(occurredSignUpError('Username is too short or is already taken, please try another'))
+                    dispatch(setIsLoading(false))
                 }
             })
-            .catch(error => dispatch(occurredSignUpError(`Failed to check database, ${error.code}`)))
+            .catch(error => {
+                dispatch(occurredSignUpError(`Failed to check database, ${error.code}`))
+                dispatch(setIsLoading(false))
+            })
     }
 
     return (

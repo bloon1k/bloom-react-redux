@@ -5,7 +5,9 @@ import {Link, useNavigate, useParams} from 'react-router-dom'
 // Redux
 import {useDispatch, useSelector} from 'react-redux'
 import {setPosts} from '../../redux/features/postsSlice'
+import {setIsLoading} from '../../redux/features/changeHandlerSlice'
 // Firebase storage
+import getUserDataByID from '../../utils/getUserDataByID'
 import {deleteObject, getStorage, ref} from 'firebase/storage'
 // Firestore
 import {doc, updateDoc} from 'firebase/firestore'
@@ -13,7 +15,6 @@ import {doc, updateDoc} from 'firebase/firestore'
 import trash from '../../Assets/trash.png'
 import trashDark from '../../Assets/trash-dark.png'
 import guest from '../../Assets/guest.png'
-import getUserDataByID from '../../utils/getUserDataByID'
 
 
 const SeePost = () => {
@@ -38,27 +39,37 @@ const SeePost = () => {
         }
         // eslint-disable-next-line
     }, [])
-
+    
     function handlePostDelete() {
+        // Activate loader
+        dispatch(setIsLoading(true))
+        // Hide confirmation popup
         document.getElementById('see-post__delete-popup').style.display = 'none'
-        const postListDocRef = doc(database, 'posts', currentUserData.userID)
-        const deletingIndex = currentPostList.indexOf(currentPostWatched)
+        // Find index of deleting object
+        let deletingIndex = currentPostList.indexOf(currentPostWatched)
+        // Perform deletion and proceed with a new posts array
         const newPostList = [...currentPostList.slice(0, deletingIndex), ...currentPostList.slice(deletingIndex + 1)]
-        updateDoc(postListDocRef, {
-            postList: newPostList
-        })
-            .then(() => {
-                dispatch(setPosts(newPostList))
-                const deletingImageRef = ref(storage, currentPostWatched.postImageURL)
-                // Delete old post image from Storage
-                currentPostWatched.postImageURL && deleteObject(deletingImageRef)
-                    .then(() => {
-                        console.log('Old post image deleted successfully')
-                        navigate('/')
-                    })
-                    .catch((error) => console.log('Cannot delete old post image: ', error))
+        if (deletingIndex !== -1) {
+            const postListDocRef = doc(database, 'posts', currentUserData.userID)
+            updateDoc(postListDocRef, {
+                postList: newPostList
             })
-            .catch(error => console.log(`Error while updating post list: ${error.code}`))
+                .then(() => {
+                    dispatch(setPosts(newPostList))
+                    const deletingImageRef = ref(storage, currentPostWatched.postImageURL)
+                    // Delete old post image from Storage
+                    currentPostWatched.postImageURL && deleteObject(deletingImageRef)
+                        .then(() => {
+                            dispatch(setIsLoading(false))
+                            console.log('Old post image deleted successfully')
+                            navigate('/')
+                        })
+                        .catch((error) => console.log('Cannot delete old post image: ', error))
+                })
+                .catch(error => console.log(`Error while updating post list: ${error.code}`))
+        } else {
+            console.log('oops')
+        }
     }
 
     return (
